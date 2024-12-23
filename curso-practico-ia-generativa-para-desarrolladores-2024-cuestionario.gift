@@ -1,0 +1,113 @@
+::Definición de IA Generativa
+:: ¿Qué son los sistemas de IA generativa? {
+    =Sistemas que pueden generar texto, imágenes, música, vídeo y otros contenidos.
+    ~Sistemas diseñados únicamente para analizar datos.
+    ~Herramientas para la optimización de procesos industriales.
+    ~Sistemas de conducción autónomos.
+}
+
+::Origen del término "Inteligencia Artificial"
+:: ¿Cuándo se acuñó el término "Inteligencia Artificial"? {
+    ~1939.
+    =1956.
+    ~1974.
+    ~1997.
+}
+
+::Inicio de los Transformers
+:: ¿Cuál es el nombre del artículo que introdujo los transformadores? {
+    ~Deep Learning for AI.
+    ~Generative Models.
+    =Attention is All You Need.
+    ~Transformers in Practice.
+}
+
+::Preocupación ética de la IA Generativa
+:: ¿Cuál es una preocupación ética clave en el desarrollo de modelos generativos? {
+    =Posible perpetuación de sesgos.
+    ~Mayor creatividad artística.
+    ~Mejoras en diagnósticos médicos.
+    ~Mayor eficiencia en los trabajos.
+}
+
+
+::Definición de Prompt Engineering
+:: ¿Qué es Prompt Engineering? {
+    =Una técnica para diseñar y optimizar instrucciones dadas a un modelo de IA generativa.
+    ~Un tipo de modelo de lenguaje.
+    ~Un enfoque exclusivo para generar código.
+    ~Una herramienta de visualización de datos.
+}
+
+::Objetivo de Prompt Engineering
+:: ¿Cuál es el objetivo principal del Prompt Engineering? {
+    =Obtener resultados más precisos y útiles ajustando las entradas al modelo.
+    ~Mejorar la velocidad de procesamiento del modelo.
+    ~Minimizar el uso de recursos computacionales.
+    ~Aumentar la cantidad de datos necesarios para el entrenamiento.
+}
+
+::Impacto de los prompts
+:: ¿Qué impacto tienen los prompts en los resultados de un modelo? {
+    =Definen directamente la calidad de la salida generada.
+    ~Reducen la necesidad de entrenamiento adicional.
+    ~Mejoran automáticamente la eficiencia del modelo.
+    ~Garantizan respuestas creativas independientemente del contexto.
+}
+
+::Casos de uso en desarrollo de software
+:: Menciona un caso clave de uso para Prompt Engineering en desarrollo de software: {
+    =Crear funciones a partir de descripciones como "Escribe una función Java que ordene una lista de números".
+    ~Implementar redes neuronales convolucionales.
+    ~Entrenar un modelo desde cero.
+    ~Crear gráficos de visualización.
+}
+
+::Embeddings en IA
+:: ¿Qué representa un embedding en IA? {
+    =Una representación matemática que convierte datos complejos en vectores.
+    ~Una metodología de entrenamiento supervisado.
+    ~Un algoritmo específico para modelos generativos.
+    ~Un tipo de modelo preentrenado.
+}
+
+::Few-shot prompting
+:: ¿Cómo se utiliza el few-shot prompting? {
+    =Ofreciendo múltiples ejemplos para contextualizar mejor la tarea.
+    ~Solicitando una tarea sin ejemplos previos.
+    ~Generando casos de prueba automáticos.
+    ~Implementando prompts iterativos.
+}
+
+::Funciones del AI Assistant
+:: ¿Cuál de las siguientes no es una funcionalidad del AI Assistant? {
+    ~Explicar código.
+    ~Generar documentación.
+    =Configurar automáticamente el sistema operativo.
+    ~Sugerir refactorización.
+}
+
+::Generación de documentación
+:: ¿Qué se necesita hacer para generar documentación usando el AI Assistant?
+{
+    =Seleccionar un fragmento de código, presionar Alt+Enter y elegir "Write documentation".
+    ~Presionar Shift+F6 para iniciar el generador de documentación.
+    ~Seleccionar "Create Documentation" desde el menú de IntelliJ.
+    ~Configurar un archivo de ayuda en el editor.
+}
+
+::Definicion de Copilot4Eclipse
+:: ¿Qué es Copilot4Eclipse? {
+    =Es un plugin para Eclipse que integra GitHub Copilot.
+    ~Es una herramienta independiente de Eclipse.
+    ~Es un framework para desarrollo de plugins.
+    ~Es una librería para manejar datos de Eclipse.
+}
+
+::Caracteristicas "Texto fantasma"
+:: ¿Cómo se presentan las sugerencias de código en Copilot4Eclipse? {
+    =Se muestran como texto gris claro en cursiva.
+    ~Se presentan en negrita para destacar.
+    ~Se ocultan hasta ser aceptadas.
+    ~Se visualizan en un panel separado.
+}

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="Prompt Engineering">
+  <meta name="author" content="Adolfo Sanz De Diego" />
+  <title>Prompt Engineering</title>
+  <style type="text/css">
+    pre, code {
+      background-color: #ddd;
+      white-space: pre;
+    }
+    aside.notes{
+      background-color: yellow;
+    }
+    img.center {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="container">
+<header id="title-block-header">
+<h1 class="title">Prompt Engineering</h1>
+<p class="author">Adolfo Sanz De Diego</p>
+<p class="date">Diciembre 2024</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introducción-a-prompt-engineering">Introducción a Prompt Engineering</a>
+<ul>
+<li><a href="#qué-es-prompt-engineering">¿Qué es Prompt Engineering?</a></li>
+<li><a href="#importancia-de-los-prompts">Importancia de los Prompts</a></li>
+<li><a href="#ejemplos-para-desarrollo-de-software">Ejemplos para Desarrollo de Software</a></li>
+</ul></li>
+<li><a href="#historia-de-los-modelos-generativos">Historia de los Modelos Generativos</a>
+<ul>
+<li><a href="#hasta-el-2017">Hasta el 2017</a></li>
+<li><a href="#desde-el-2017">Desde el 2017</a></li>
+</ul></li>
+<li><a href="#conceptos-clave">Conceptos clave</a>
+<ul>
+<li><a href="#tokens">Tokens</a></li>
+<li><a href="#embeddings">Embeddings</a></li>
+<li><a href="#contexto">Contexto</a></li>
+<li><a href="#tipos-de-modelos-generativos">Tipos de modelos generativos</a></li>
+</ul></li>
+<li><a href="#características-de-un-buen-prompt">Características de un buen prompt</a>
+<ul>
+<li><a href="#claridad-y-concisión">Claridad y concisión</a></li>
+<li><a href="#contexto-suficiente">Contexto suficiente</a></li>
+<li><a href="#especificidad">Especificidad</a></li>
+<li><a href="#estructura">Estructura</a></li>
+</ul></li>
+<li><a href="#tipos-de-prompts">Tipos de prompts</a>
+<ul>
+<li><a href="#directos">Directos</a></li>
+<li><a href="#creativos">Creativos</a></li>
+<li><a href="#narrativos">Narrativos</a></li>
+<li><a href="#estructurados">Estructurados</a></li>
+<li><a href="#reflexivos">Reflexivos</a></li>
+</ul></li>
+<li><a href="#mejorar-la-precisión-y-relevancia-de-las-respuestas">Mejorar la precisión y relevancia de las respuestas</a>
+<ul>
+<li><a href="#reformulación-del-prompt">Reformulación del prompt</a></li>
+<li><a href="#uso-de-ejemplos">Uso de ejemplos</a></li>
+<li><a href="#definir-el-formato-esperado">Definir el formato esperado</a></li>
+<li><a href="#iteración">Iteración</a></li>
+<li><a href="#establecer-límites-o-parámetros">Establecer límites o parámetros</a></li>
+</ul></li>
+<li><a href="#utilización-de-ejemplos-en-el-prompt">Utilización de ejemplos en el Prompt</a>
+<ul>
+<li><a href="#zero-shot-prompting">Zero-Shot Prompting</a></li>
+<li><a href="#one-shot-prompting">One-Shot Prompting</a></li>
+<li><a href="#few-shot-prompting">Few-Shot Prompting</a></li>
+</ul></li>
+<li><a href="#ajuste-de-las-respuestas">Ajuste de las respuestas</a>
+<ul>
+<li><a href="#ajuste-del-tono">Ajuste del Tono</a></li>
+<li><a href="#ajuste-del-estilo">Ajuste del Estilo</a></li>
+<li><a href="#ajuste-de-la-formalidad">Ajuste de la Formalidad</a></li>
+<li><a href="#uso-de-roles">Uso de Roles</a></li>
+<li><a href="#adaptación-a-públicos-específicos">Adaptación a Públicos Específicos</a></li>
+<li><a href="#uso-de-plantillas">Uso de Plantillas</a></li>
+<li><a href="#uso-de-delimitadores">Uso de Delimitadores</a></li>
+<li><a href="#prompts-para-tareas-específicas">Prompts para Tareas Específicas</a></li>
+</ul></li>
+<li><a href="#distintos-tonos-y-estilos">Distintos Tonos y Estilos</a>
+<ul>
+<li><a href="#formal">Formal</a></li>
+<li><a href="#conversacional">Conversacional</a></li>
+<li><a href="#educativo">Educativo</a></li>
+<li><a href="#persuasivo">Persuasivo</a></li>
+<li><a href="#humorístico">Humorístico</a></li>
+<li><a href="#empático">Empático</a></li>
+<li><a href="#entusiasta">Entusiasta</a></li>
+<li><a href="#neutral">Neutral</a></li>
+<li><a href="#creativo">Creativo</a></li>
+<li><a href="#autoritario">Autoritario</a></li>
+<li><a href="#directo">Directo</a></li>
+<li><a href="#inspirador">Inspirador</a></li>
+<li><a href="#técnico">Técnico</a></li>
+</ul></li>
+<li><a href="#técnicas-avanzadas-de-prompt-engineering">Técnicas Avanzadas de Prompt Engineering</a>
+<ul>
+<li><a href="#cadena-de-pensamiento-cot">Cadena de Pensamiento (CoT)</a></li>
+<li><a href="#prompts-negativos">Prompts Negativos</a></li>
+<li><a href="#prompts-iterativos">Prompts Iterativos</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="introducción-a-prompt-engineering">Introducción a Prompt Engineering</h1>
+<h2 id="qué-es-prompt-engineering">¿Qué es Prompt Engineering?</h2>
+<ul>
+<li><strong>Definición</strong>:
+<ul>
+<li>Técnica para diseñar y optimizar instrucciones dadas a un modelo de IA generativa.</li>
+</ul></li>
+<li><strong>Objetivo principal</strong>:
+<ul>
+<li>Obtener resultados más precisos y útiles ajustando las entradas al modelo.</li>
+</ul></li>
+<li><strong>Ejemplo básico</strong>:
+<ul>
+<li>Comparar “Resume el texto” vs. “Resume este artículo en 3 puntos clave para un público técnico”.</li>
+</ul></li>
+</ul>
+<h2 id="importancia-de-los-prompts">Importancia de los Prompts</h2>
+<ul>
+<li><strong>Impacto directo en resultados</strong>:
+<ul>
+<li>La calidad del prompt define la calidad de la salida generada.</li>
+</ul></li>
+<li><strong>Eficiencia</strong>:
+<ul>
+<li>Prompts bien diseñados reducen iteraciones y ahorran tiempo.</li>
+</ul></li>
+<li><strong>Flexibilidad</strong>:
+<ul>
+<li>Los prompts permiten personalizar respuestas según necesidades específicas.</li>
+</ul></li>
+<li><strong>Casos de uso clave</strong>:
+<ul>
+<li>Redacción creativa, resolución de problemas, generación de código y más.</li>
+</ul></li>
+</ul>
+<h2 id="ejemplos-para-desarrollo-de-software">Ejemplos para Desarrollo de Software</h2>
+<ul>
+<li><strong>Generación de Código</strong>:
+<ul>
+<li>Crear funciones a partir de descripciones como: “Escribe una función Java que ordene una lista de números.”</li>
+</ul></li>
+<li><strong>Documentación Automática</strong>:
+<ul>
+<li>Generar documentación técnica basada en código existente.</li>
+</ul></li>
+<li><strong>Debugging</strong>:
+<ul>
+<li>Pedir explicaciones sobre errores en fragmentos de código.</li>
+</ul></li>
+<li><strong>Pruebas Automáticas</strong>:
+<ul>
+<li>Crear casos de prueba a partir de requisitos específicos.</li>
+</ul></li>
+<li><strong>Optimización</strong>:
+<ul>
+<li>Solicitar recomendaciones para mejorar el rendimiento de un fragmento de código.</li>
+</ul></li>
+<li><strong>Commits</strong>:
+<ul>
+<li>Generar mensajes en los commits en función de las diferencias.</li>
+</ul></li>
+</ul>
+<h1 id="historia-de-los-modelos-generativos">Historia de los Modelos Generativos</h1>
+<h2 id="hasta-el-2017">Hasta el 2017</h2>
+<ul>
+<li><strong>Décadas tempranas</strong>:
+<ul>
+<li>Los modelos de lenguaje comienzan con técnicas estadísticas simples.</li>
+</ul></li>
+<li><strong>Años 2010</strong>:
+<ul>
+<li>Avances significativos gracias a redes neuronales.</li>
+</ul></li>
+<li><strong>2017</strong>:
+<ul>
+<li>Publicación del artículo “Attention is All You Need”, que introduce el mecanismo de atención y los modelos Transformer, revolucionando el campo.</li>
+</ul></li>
+</ul>
+<h2 id="desde-el-2017">Desde el 2017</h2>
+<ul>
+<li><strong>2018</strong>:
+<ul>
+<li>OpenAI lanza GPT (Generative Pre-trained Transformer), demostrando el poder de los modelos de lenguaje preentrenados.</li>
+</ul></li>
+<li><strong>Años recientes</strong>:
+<ul>
+<li>Surgen modelos más avanzados como DALL·E (Imagen), Codex (Código), Whisper (Transcripciones), Sora (Video), Suno (Música) y modelos multimodales, ampliando las aplicaciones de la IA generativa.</li>
+</ul></li>
+</ul>
+<h1 id="conceptos-clave">Conceptos clave</h1>
+<h2 id="tokens">Tokens</h2>
+<ul>
+<li>Las <strong>unidades básicas que los modelos procesan</strong>, como palabras, subpalabras o símbolos.</li>
+<li>Por ejemplo, “inteligencia” podría dividirse en varios tokens según el modelo.</li>
+<li>El coste de los modelos en la nube en forma de API suele ir por número de tokens procesados.</li>
+</ul>
+<p><a href="https://platform.openai.com/tokenizer" class="uri">https://platform.openai.com/tokenizer</a></p>
+<p><img src="../img/tokens.png" class="center" style="width:50.0%" /></p>
+<h2 id="embeddings">Embeddings</h2>
+<ul>
+<li>Es una <strong>representación matemática que convierte datos complejos en vectores</strong>, capturando similitudes y relaciones en un espacio multidimensional.</li>
+<li>Es fundamental en IA para reducir la complejidad y permitir que los modelos procesen texto, imágenes o audios de forma eficiente.</li>
+<li>Se usa en tareas como búsqueda semántica, sistemas de recomendación y clasificación, representando información de manera compacta y útil.</li>
+</ul>
+<p><img src="../img/embeddings.png" class="center" style="width:50.0%" /></p>
+<h2 id="contexto">Contexto</h2>
+<ul>
+<li>Se refiere a la <strong>información proporcionada como entrada</strong> que guía la generación de respuestas.</li>
+<li>Incluye texto previo, instrucciones específicas y datos relevantes que ayudan al modelo a entender el propósito y mantener coherencia.</li>
+<li>Los modelos tienen un <strong>límite de tokens</strong> que pueden procesar en una sola interacción.</li>
+</ul>
+<h2 id="tipos-de-modelos-generativos">Tipos de modelos generativos</h2>
+<ul>
+<li>De texto a texto.</li>
+<li>De texto a imagen y de imagen a texto.</li>
+<li>De texto a audio y de audio a texto.</li>
+<li>De texto a video y de viideo a texto.</li>
+<li>Multimodales (pueden recibir texto, imágenes, vídeos, audios, etc.) y generan cualquier tipo de resultado.</li>
+</ul>
+<h1 id="características-de-un-buen-prompt">Características de un buen prompt</h1>
+<h2 id="claridad-y-concisión">Claridad y concisión</h2>
+<ul>
+<li>Un buen prompt debe ser claro y directo.</li>
+<li>Evitar ambigüedades o términos que puedan ser interpretados de múltiples formas.</li>
+</ul>
+<h2 id="contexto-suficiente">Contexto suficiente</h2>
+<ul>
+<li>Proporcionar el contexto necesario para que la IA comprenda la intención del usuario.</li>
+<li>Incluir detalles relevantes como objetivos, audiencia, o formato deseado.</li>
+</ul>
+<h2 id="especificidad">Especificidad</h2>
+<ul>
+<li>Detallar claramente lo que se espera en la respuesta.</li>
+<li>Evitar generalidades que puedan llevar a respuestas vagas o irrelevantes.</li>
+</ul>
+<h2 id="estructura">Estructura</h2>
+<ul>
+<li>Formular el prompt con una estructura lógica y ordenada.</li>
+<li>Utilizar listas, preguntas claras o ejemplos para guiar a la IA.</li>
+</ul>
+<h1 id="tipos-de-prompts">Tipos de prompts</h1>
+<h2 id="directos">Directos</h2>
+<ul>
+<li>Preguntas o comandos simples y directos.</li>
+</ul>
+<h2 id="creativos">Creativos</h2>
+<ul>
+<li>Estimulan respuestas únicas o fuera de lo común.</li>
+</ul>
+<h2 id="narrativos">Narrativos</h2>
+<ul>
+<li>Orientados a desarrollar historias o explicaciones detalladas.</li>
+</ul>
+<h2 id="estructurados">Estructurados</h2>
+<ul>
+<li>Usan un formato claro, como tablas, listas o párrafos con secciones específicas.</li>
+</ul>
+<h2 id="reflexivos">Reflexivos</h2>
+<ul>
+<li>Invitan a un análisis profundo o comparaciones.</li>
+</ul>
+<h1 id="mejorar-la-precisión-y-relevancia-de-las-respuestas">Mejorar la precisión y relevancia de las respuestas</h1>
+<h2 id="reformulación-del-prompt">Reformulación del prompt</h2>
+<ul>
+<li>Reescribir el prompt para hacerlo más claro o específico.</li>
+<li>Evitar preguntas demasiado abiertas o genéricas.</li>
+</ul>
+<h2 id="uso-de-ejemplos">Uso de ejemplos</h2>
+<ul>
+<li>Proporcionar ejemplos específicos en el prompt para orientar a la IA.</li>
+</ul>
+<h2 id="definir-el-formato-esperado">Definir el formato esperado</h2>
+<ul>
+<li>Incluir en el prompt cómo debe estructurarse la respuesta (listas, párrafos, tablas, etc.).</li>
+</ul>
+<h2 id="iteración">Iteración</h2>
+<ul>
+<li>Si la respuesta inicial no es satisfactoria, ajustar el prompt con más detalles o nueva información.</li>
+</ul>
+<h2 id="establecer-límites-o-parámetros">Establecer límites o parámetros</h2>
+<ul>
+<li>Definir restricciones como la longitud máxima de la respuesta o el tono deseado.</li>
+</ul>
+<h1 id="utilización-de-ejemplos-en-el-prompt">Utilización de ejemplos en el Prompt</h1>
+<h2 id="zero-shot-prompting">Zero-Shot Prompting</h2>
+<ul>
+<li>Solicitar directamente la tarea sin ejemplos previos.</li>
+</ul>
+<h2 id="one-shot-prompting">One-Shot Prompting</h2>
+<ul>
+<li>Proporcionar un ejemplo para guiar la respuesta.</li>
+</ul>
+<h2 id="few-shot-prompting">Few-Shot Prompting</h2>
+<ul>
+<li>Ofrecer múltiples ejemplos para contextualizar mejor la tarea.</li>
+</ul>
+<h1 id="ajuste-de-las-respuestas">Ajuste de las respuestas</h1>
+<h2 id="ajuste-del-tono">Ajuste del Tono</h2>
+<ul>
+<li>Adaptar la formalidad o la calidez de la respuesta.</li>
+</ul>
+<h2 id="ajuste-del-estilo">Ajuste del Estilo</h2>
+<ul>
+<li>Cambiar el formato o enfoque de la respuesta.</li>
+</ul>
+<h2 id="ajuste-de-la-formalidad">Ajuste de la Formalidad</h2>
+<ul>
+<li>Modificar el nivel de formalidad según el público objetivo.</li>
+</ul>
+<h2 id="uso-de-roles">Uso de Roles</h2>
+<ul>
+<li>Asignar un rol específico al generador de contenido.</li>
+</ul>
+<h2 id="adaptación-a-públicos-específicos">Adaptación a Públicos Específicos</h2>
+<ul>
+<li>Personalizar la respuesta para una audiencia específica.</li>
+</ul>
+<h2 id="uso-de-plantillas">Uso de Plantillas</h2>
+<ul>
+<li>Crear estructuras reutilizables para tareas frecuentes.</li>
+</ul>
+<h2 id="uso-de-delimitadores">Uso de Delimitadores</h2>
+<ul>
+<li>Delimitar entradas o contexto para mayor claridad.</li>
+</ul>
+<h2 id="prompts-para-tareas-específicas">Prompts para Tareas Específicas</h2>
+<ul>
+<li>Diseñar prompts para casos concretos.</li>
+</ul>
+<h1 id="distintos-tonos-y-estilos">Distintos Tonos y Estilos</h1>
+<h2 id="formal">Formal</h2>
+<ul>
+<li>Se utiliza para comunicar ideas con precisión, seriedad y profesionalismo.</li>
+</ul>
+<h2 id="conversacional">Conversacional</h2>
+<ul>
+<li>Es amigable y cercano, ideal para mantener una interacción más relajada.</li>
+</ul>
+<h2 id="educativo">Educativo</h2>
+<ul>
+<li>Orienta hacia la enseñanza y la claridad, adecuado para explicar conceptos paso a paso.</li>
+</ul>
+<h2 id="persuasivo">Persuasivo</h2>
+<ul>
+<li>Busca convencer al lector o usuario de adoptar una idea, enfoque o herramienta.</li>
+</ul>
+<h2 id="humorístico">Humorístico</h2>
+<ul>
+<li>Introduce ligereza o humor para hacer el contenido más atractivo y ameno.</li>
+</ul>
+<h2 id="empático">Empático</h2>
+<ul>
+<li>Transmite apoyo y comprensión, ideal para conectar con los sentimientos del lector.</li>
+</ul>
+<h2 id="entusiasta">Entusiasta</h2>
+<ul>
+<li>Muestra motivación y pasión, ideal para inspirar al lector o usuario.</li>
+</ul>
+<h2 id="neutral">Neutral</h2>
+<ul>
+<li>Proporciona información imparcial, precisa y sin juicios.</li>
+</ul>
+<h2 id="creativo">Creativo</h2>
+<ul>
+<li>Explora ideas innovadoras o contextos imaginativos para resolver problemas.</li>
+</ul>
+<h2 id="autoritario">Autoritario</h2>
+<ul>
+<li>Comunica seguridad y experiencia para guiar al lector con determinación.</li>
+</ul>
+<h2 id="directo">Directo</h2>
+<ul>
+<li>Va al grano, ofreciendo respuestas rápidas y claras.</li>
+</ul>
+<h2 id="inspirador">Inspirador</h2>
+<ul>
+<li>Busca motivar al lector y estimular su confianza o creatividad.</li>
+</ul>
+<h2 id="técnico">Técnico</h2>
+<ul>
+<li>Se enfoca en detalles complejos y específicos, usando lenguaje técnico.</li>
+</ul>
+<h1 id="técnicas-avanzadas-de-prompt-engineering">Técnicas Avanzadas de Prompt Engineering</h1>
+<h2 id="cadena-de-pensamiento-cot">Cadena de Pensamiento (CoT)</h2>
+<ul>
+<li>Descomponer una tarea compleja en pasos más pequeños y claros.</li>
+</ul>
+<h2 id="prompts-negativos">Prompts Negativos</h2>
+<ul>
+<li>Especificar qué no incluir en la respuesta.</li>
+</ul>
+<h2 id="prompts-iterativos">Prompts Iterativos</h2>
+<ul>
+<li>Refinar progresivamente las respuestas a través de ajustes iterativos.</li>
+</ul>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

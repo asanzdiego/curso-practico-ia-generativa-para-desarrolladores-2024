@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="IntelliJ IDEA AI Assistant">
+  <meta name="author" content="Adolfo Sanz De Diego" />
+  <title>IntelliJ IDEA AI Assistant</title>
+  <style type="text/css">
+    pre, code {
+      background-color: #ddd;
+      white-space: pre;
+    }
+    aside.notes{
+      background-color: yellow;
+    }
+    img.center {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="container">
+<header id="title-block-header">
+<h1 class="title">IntelliJ IDEA AI Assistant</h1>
+<p class="author">Adolfo Sanz De Diego</p>
+<p class="date">Diciembre 2024</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introducción">Introducción</a>
+<ul>
+<li><a href="#qué-es-el-ai-assistant">¿Qué es el AI Assistant?</a></li>
+<li><a href="#consideraciones-previas">Consideraciones previas</a></li>
+<li><a href="#requisitos-del-asistente-de-ia">Requisitos del Asistente de IA</a></li>
+</ul></li>
+<li><a href="#instalación-y-activación">Instalación y Activación</a>
+<ul>
+<li><a href="#instalación-del-plugin">Instalación del Plugin</a></li>
+<li><a href="#activación-de-la-licencia">Activación de la Licencia</a></li>
+</ul></li>
+<li><a href="#chat-con-ia">Chat con IA</a>
+<ul>
+<li><a href="#iniciar-un-nuevo-chat">Iniciar un nuevo chat</a></li>
+<li><a href="#adjuntar-achivos-o-funciones">Adjuntar achivos o funciones</a></li>
+<li><a href="#gestionar-el-modo-de-chat-inteligente">Gestionar el modo de chat inteligente</a></li>
+<li><a href="#conectar-el-chat-del-ai-assistant-a-tu-llm-local">Conectar el chat del AI Assistant a tu LLM local</a></li>
+</ul></li>
+<li><a href="#uso-de-prompts-predefinidos">Uso de prompts predefinidos</a>
+<ul>
+<li><a href="#explicar-código-expresiones-regulares-sql">Explicar código, Expresiones Regulares, SQL…</a></li>
+<li><a href="#sugerir-refactorización">Sugerir Refactorización</a></li>
+<li><a href="#encontrar-problemas">Encontrar Problemas</a></li>
+<li><a href="#explicar-un-error-en-tiempo-de-ejecución">Explicar un Error en Tiempo de Ejecución</a></li>
+</ul></li>
+<li><a href="#indicaciones-personalizadas">Indicaciones Personalizadas</a>
+<ul>
+<li><a href="#agregar-indicaciones-a-la-biblioteca-de-indicaciones">Agregar Indicaciones a la Biblioteca de Indicaciones</a></li>
+<li><a href="#modificar-las-indicaciones-predefinidas">Modificar las Indicaciones Predefinidas</a></li>
+</ul></li>
+<li><a href="#usar-ia-en-el-editor">Usar IA en el editor</a>
+<ul>
+<li><a href="#generar-código-en-el-editor-usando-prompts">Generar código en el editor usando prompts</a></li>
+<li><a href="#escribir-indicaciones-para-la-ia">Escribir indicaciones para la IA</a></li>
+<li><a href="#revertir-y-descartar-cambios">Revertir y descartar cambios</a></li>
+<li><a href="#indicaciones-mientras-escribes">Indicaciones mientras escribes</a></li>
+</ul></li>
+<li><a href="#sugerencias-de-nombres">Sugerencias de nombres</a>
+<ul>
+<li><a href="#obtener-ayuda-con-sugerencias-de-nombres">Obtener ayuda con sugerencias de nombres</a></li>
+<li><a href="#activar-sugerencias-de-nombres-generados-por-ia">Activar sugerencias de nombres generados por IA</a></li>
+</ul></li>
+<li><a href="#autocompletado">Autocompletado</a>
+<ul>
+<li><a href="#invocar-autocompletado-con-ia">Invocar autocompletado con IA</a></li>
+<li><a href="#trabajar-con-autocompletado-en-el-editor">Trabajar con autocompletado en el editor</a></li>
+<li><a href="#configurar-el-autocompletado">Configurar el autocompletado</a></li>
+</ul></li>
+<li><a href="#corrección-de-errores">Corrección de errores</a>
+<ul>
+<li><a href="#corregir-errores-con-ia">Corregir errores con IA</a></li>
+<li><a href="#aplicar-corrección-con-ia">Aplicar corrección con IA</a></li>
+</ul></li>
+<li><a href="#integración-con-los-sistemas-de-control-de-versiones">Integración con los Sistemas de Control de Versiones</a>
+<ul>
+<li><a href="#generar-mensajes-de-commit">Generar mensajes de commit</a></li>
+<li><a href="#personalizar-el-mensaje-de-commit">Personalizar el mensaje de commit</a></li>
+<li><a href="#editar-y-mejorar-mensajes-de-commit">Editar y mejorar mensajes de commit</a></li>
+<li><a href="#explicar-commits">Explicar commits</a></li>
+<li><a href="#generar-título-y-descripción-para-pull-y-merge-requests">Generar título y descripción para pull y merge requests</a></li>
+<li><a href="#resolver-conflictos-de-git-con-ai">Resolver conflictos de Git con AI</a></li>
+</ul></li>
+<li><a href="#generar-documentación">Generar documentación</a>
+<ul>
+<li><a href="#generar-documentación-1">Generar documentación</a></li>
+<li><a href="#personalización-del-prompt">Personalización del prompt</a></li>
+</ul></li>
+<li><a href="#uso-de-la-ia-para-convertir-archivos-a-otro-lenguaje">Uso de la IA para convertir archivos a otro lenguaje</a>
+<ul>
+<li><a href="#conversión-completa-de-un-archivo-a-otro-lenguaje">Conversión completa de un archivo a otro lenguaje</a></li>
+<li><a href="#habilitar-la-conversión-de-código-a-otro-lenguaje-mediante-copiar-y-pegar">Habilitar la conversión de código a otro lenguaje mediante copiar y pegar</a></li>
+</ul></li>
+<li><a href="#generación-de-pruebas">Generación de Pruebas</a>
+<ul>
+<li><a href="#generar-pruebas-unitarias">Generar Pruebas Unitarias</a></li>
+<li><a href="#inspeccionar-y-mejorar">Inspeccionar y Mejorar</a></li>
+<li><a href="#guardar-las-pruebas">Guardar las Pruebas</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="introducción">Introducción</h1>
+<h2 id="qué-es-el-ai-assistant">¿Qué es el AI Assistant?</h2>
+<ul>
+<li>Herramienta impulsada por <strong>inteligencia artificial</strong> para el desarrollo de software.</li>
+<li>Funcionalidades como explicar código, responder preguntas, generar documentación, y más.</li>
+</ul>
+<h2 id="consideraciones-previas">Consideraciones previas</h2>
+<ul>
+<li>El plugin <strong>AI Assistant no viene incluido por defecto</strong> en IntelliJ IDEA y debe ser habilitado manualmente.</li>
+<li>El plugin conecta al usuario con grandes modelos del lenguaje (<strong>LLM</strong>).</li>
+<li>Las solicitudes y fragmentos de código se envían al proveedor del modelo LLM.</li>
+</ul>
+<h2 id="requisitos-del-asistente-de-ia">Requisitos del Asistente de IA</h2>
+<ul>
+<li>Instalar el plugin <strong>AI Assistant</strong> manualmente.</li>
+<li>Adquirir una licencia del <strong>Servicio de IA de JetBrains</strong>.</li>
+<li>Aceptar los <strong>Términos de Servicio</strong> y la <strong>Política de Uso Aceptable</strong>.</li>
+</ul>
+<h1 id="instalación-y-activación">Instalación y Activación</h1>
+<h2 id="instalación-del-plugin">Instalación del Plugin</h2>
+<ul>
+<li>Haga clic en “<strong>Install AI Assistant</strong>” en la barra de herramientas derecha.</li>
+<li>Alternativamente, vaya a <strong>Settings | Plugins | Marketplace</strong> y busque “<strong>AI Assistant</strong>”.</li>
+<li><strong>Reinicie</strong> IntelliJ IDEA después de la instalación.</li>
+</ul>
+<h2 id="activación-de-la-licencia">Activación de la Licencia</h2>
+<ul>
+<li>Inicie sesión en su cuenta de <strong>JetBrains</strong>.</li>
+<li>Adquiera la licencia o active la <strong>prueba gratuita</strong>.</li>
+<li>Verifique el estado de su licencia en la ventana del Asistente de IA.</li>
+</ul>
+<h1 id="chat-con-ia">Chat con IA</h1>
+<h2 id="iniciar-un-nuevo-chat">Iniciar un nuevo chat</h2>
+<ul>
+<li>Haz clic en <strong>AI Assistant</strong> en la barra de herramientas derecha.</li>
+<li>En el campo de entrada, escribe tu pregunta.</li>
+<li>Usa los comandos <code>/explain</code> y <code>/refactor</code> para ahorrar tiempo al escribir tu consulta.</li>
+<li>Usa el comando <code>/docs</code> para hacer preguntas relacionadas con IntelliJ IDEA.</li>
+</ul>
+<h2 id="adjuntar-achivos-o-funciones">Adjuntar achivos o funciones</h2>
+<ul>
+<li><strong>#thisFile</strong> hace referencia al archivo abierto.</li>
+<li><strong>#localChanges</strong> hace referencia a los cambios no comprometidos.</li>
+<li><strong>#file:</strong> abre un popup con los archivos del proyecto actual.</li>
+<li><strong>#symbol:</strong> agrega un símbolo a la consulta.</li>
+<li><strong>#schema:</strong> hace referencia a un esquema de base de datos.</li>
+</ul>
+<h2 id="gestionar-el-modo-de-chat-inteligente">Gestionar el modo de chat inteligente</h2>
+<ul>
+<li>El modo de chat inteligente está habilitado por defecto.</li>
+<li>Este modo permite al Asistente IA enviar detalles adicionales sobre el proyecto y el entorno.</li>
+<li>Para desactivarlo, desmarca la opción “<strong>Enable smart chat mode</strong>” en <strong>Settings | Tools | AI Assistant</strong></li>
+</ul>
+<h2 id="conectar-el-chat-del-ai-assistant-a-tu-llm-local">Conectar el chat del AI Assistant a tu LLM local</h2>
+<ul>
+<li>Puedes conectar tu LLM local disponible a través de Ollama.</li>
+<li>Abre la configuración, selecciona <strong>Tools | AI Assistant</strong> y habilita Ollama.</li>
+<li>Especifica la URL del host local y prueba la conexión.</li>
+<li>Al trabajar con el chat, selecciona tu modelo de LLM disponible.</li>
+</ul>
+<h1 id="uso-de-prompts-predefinidos">Uso de prompts predefinidos</h1>
+<h2 id="explicar-código-expresiones-regulares-sql">Explicar código, Expresiones Regulares, SQL…</h2>
+<ul>
+<li>Selecciona un fragmento de código y haz clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, selecciona un fragmento de código y presiona <code>Alt+Enter</code>.</li>
+<li>Selecciona “<strong>AI Actions</strong>” y luego “<strong>Explain code</strong>”</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para ofrecerte una explicación.</li>
+</ul>
+<h2 id="sugerir-refactorización">Sugerir Refactorización</h2>
+<ul>
+<li>Selecciona un fragmento de código y haz clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, selecciona un fragmento de código y presiona <code>Alt+Enter</code></li>
+<li>Selecciona “<strong>AI Actions</strong>” y luego “<strong>Suggest Refactoring</strong>”.</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para ofrecerte sugerencias de refactorización.</li>
+</ul>
+<h2 id="encontrar-problemas">Encontrar Problemas</h2>
+<ul>
+<li>Selecciona un fragmento de código y haz clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, selecciona un fragmento de código y presiona <code>Alt+Enter</code></li>
+<li>Selecciona “<strong>AI Actions</strong>” y luego “<strong>Find Problems</strong>”</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para mostrar los problemas potenciales.</li>
+</ul>
+<h2 id="explicar-un-error-en-tiempo-de-ejecución">Explicar un Error en Tiempo de Ejecución</h2>
+<ul>
+<li>Haz clic en “<strong>Explain with AI</strong>” en la consola.</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para ofrecerte una explicación del error y sugerir una solución.</li>
+</ul>
+<h1 id="indicaciones-personalizadas">Indicaciones Personalizadas</h1>
+<h2 id="agregar-indicaciones-a-la-biblioteca-de-indicaciones">Agregar Indicaciones a la Biblioteca de Indicaciones</h2>
+<ul>
+<li>Haz clic derecho en cualquier parte del editor para abrir el menú contextual, luego ve a “<strong>AI Actions | Edit User Prompts</strong>”</li>
+<li>Alternativamente, presiona <code>Alt+Enter</code>, selecciona “<strong>AI Actions</strong>”, y haz clic en “<strong>Add your prompts</strong>”.</li>
+<li>Alternativamente, presiona <code>Ctrl+Alt+S</code> para abrir la configuración y luego selecciona “<strong>Tools | AI Assistant | Prompt Library</strong>”</li>
+<li>Haz clic en el botón <strong>+</strong>.</li>
+<li>Escribe tu prompt y edita el nombre.</li>
+</ul>
+<h2 id="modificar-las-indicaciones-predefinidas">Modificar las Indicaciones Predefinidas</h2>
+<ul>
+<li>Haz clic derecho en cualquier parte del editor para abrir el menú contextual, luego ve a “<strong>AI Actions | Edit User Prompts</strong>”</li>
+<li>Alternativamente, presiona <code>Alt+Enter</code>, selecciona “<strong>AI Actions</strong>”, y haz clic en “<strong>Add your prompts</strong>”.</li>
+<li>Alternativamente, presiona <code>Ctrl+Alt+S</code> para abrir la configuración y luego selecciona “<strong>Tools | AI Assistant | Prompt Library</strong>”</li>
+<li>Selecciona la acción para la que deseas modificar.</li>
+<li>Agrega nuevas instrucciones y haz clic en “<strong>Apply</strong>”</li>
+</ul>
+<h1 id="usar-ia-en-el-editor">Usar IA en el editor</h1>
+<h2 id="generar-código-en-el-editor-usando-prompts">Generar código en el editor usando prompts</h2>
+<ul>
+<li>Selecciona una pieza de código que desees modificar o coloca el cursor en cualquier lugar del editor y presiona <code>Ctrl+\</code>.</li>
+<li>Alternativamente, haz clic derecho en el editor para abrir el menú contextual, selecciona “<strong>AI Actions</strong>” y luego “<strong>Generate Code</strong>” .</li>
+<li>Si seleccionas un fragmento de código y pides al <strong>AI Assistant</strong> que genere código, solo sugerirá cambios para ese fragmento de código seleccionado.</li>
+<li>Si colocas el cursor en cualquier lugar antes de pedir al <strong>AI Assistant</strong> que genere código, el código generado se insertará en el editor en la posición del cursor.</li>
+</ul>
+<h2 id="escribir-indicaciones-para-la-ia">Escribir indicaciones para la IA</h2>
+<ul>
+<li>En el campo de entrada, escribe tu prompt y presiona <code>Enter</code>.</li>
+<li>Espera a que se complete la generación. El código generado se mostrará en la misma pestaña del editor donde invocaste el campo de entrada.</li>
+<li>Si deseas mejorar el código generado, en el mismo campo de entrada, escribe un mensaje de seguimiento con los nuevos requisitos y presiona <code>Enter</code>.</li>
+<li>Haz clic en <strong>Accept</strong> para insertar el fragmento generado.</li>
+</ul>
+<h2 id="revertir-y-descartar-cambios">Revertir y descartar cambios</h2>
+<ul>
+<li>Para revertir algunos de los cambios sugeridos, haz clic en <strong>Revert</strong> en la barra lateral.</li>
+<li>Para descartar todos los cambios sugeridos, haz clic en <strong>Discard</strong> en la ventana emergente del campo de entrada.</li>
+</ul>
+<h2 id="indicaciones-mientras-escribes">Indicaciones mientras escribes</h2>
+<ul>
+<li>El <strong>AI Assistant</strong> también puede entender indicaciones mientras escribes directamente en el editor, sin necesidad de invocar el campo de entrada de generación de código.</li>
+<li>Escribe tu prompt directamente en el editor y presiona <code>Tab</code>. Para deshacer los cambios, presiona <code>Ctrl+Z</code>.</li>
+</ul>
+<h1 id="sugerencias-de-nombres">Sugerencias de nombres</h1>
+<h2 id="obtener-ayuda-con-sugerencias-de-nombres">Obtener ayuda con sugerencias de nombres</h2>
+<ul>
+<li>Cuando renombres (<code>Shift+F6</code>) un símbolo, el <strong>AI Assistant</strong> sugiere opciones de nombre basadas en su contenido.</li>
+<li>Esta función está habilitada por defecto. Para activarla o desactivarla, revisa la configuración del <strong>AI Assistant</strong>.</li>
+</ul>
+<h2 id="activar-sugerencias-de-nombres-generados-por-ia">Activar sugerencias de nombres generados por IA</h2>
+<ul>
+<li>Presiona <code>Ctrl+Alt+S</code> para abrir la configuración y selecciona <strong>Tools | AI Assistant</strong>.</li>
+<li>Usa la casilla de verificación <strong>Provide AI-generated name suggestions</strong>.</li>
+</ul>
+<h1 id="autocompletado">Autocompletado</h1>
+<h2 id="invocar-autocompletado-con-ia">Invocar autocompletado con IA</h2>
+<ul>
+<li>El autocompletado impulsado por el <strong>AI Assistant</strong> puede autocompletar líneas individuales, bloques de código e incluso funciones completas en tiempo real, basado en el contexto del proyecto.</li>
+</ul>
+<h2 id="trabajar-con-autocompletado-en-el-editor">Trabajar con autocompletado en el editor</h2>
+<ul>
+<li>Las sugerencias se muestran en el editor mientras escribes. También puedes activar el autocompletado presionando <code>Alt+Shift+\</code>.</li>
+<li>Para aplicar la sugerencia:
+<ul>
+<li>Presiona <code>Tab</code> para aceptar toda la sugerencia.</li>
+<li>Presiona <code>Ctrl+Right</code> para aceptar la sugerencia palabra por palabra.</li>
+<li>Presiona <code>End</code> para aceptar la sugerencia línea por línea.</li>
+</ul></li>
+<li>Para rechazar la sugerencia, presiona <code>Escape</code>.</li>
+</ul>
+<h2 id="configurar-el-autocompletado">Configurar el autocompletado</h2>
+<ul>
+<li>La opción de autocompletado está habilitada por defecto. Puedes configurar su funcionamiento en la configuración.</li>
+<li>Presiona <code>Ctrl+Alt+S</code> para abrir la configuración y selecciona <strong>Editor | General | Inline Completion</strong>.</li>
+</ul>
+<h1 id="corrección-de-errores">Corrección de errores</h1>
+<h2 id="corregir-errores-con-ia">Corregir errores con IA</h2>
+<ul>
+<li>Cuando IntelliJ IDEA detecta código con errores previos a la compilación, sugiere una corrección rápida directamente en el editor.</li>
+<li>El <strong>AI Assistant</strong> puede sugerir correcciones más precisas debido a su conocimiento del contexto.</li>
+</ul>
+<h2 id="aplicar-corrección-con-ia">Aplicar corrección con IA</h2>
+<ul>
+<li>Coloca el cursor en un error destacado en el editor. Luego haz clic en el icono de la bombilla roja o presiona <code>Alt+Enter</code> para abrir la lista de sugerencias.</li>
+<li>Haz clic en <strong>Fix with AI</strong>.</li>
+<li>El <strong>AI Assistant</strong> enviará el archivo completo junto con los archivos relacionados al modelo de lenguaje para determinar la corrección más adecuada en este caso específico.</li>
+<li>El código se actualizará directamente en el editor.</li>
+</ul>
+<h1 id="integración-con-los-sistemas-de-control-de-versiones">Integración con los Sistemas de Control de Versiones</h1>
+<h2 id="generar-mensajes-de-commit">Generar mensajes de commit</h2>
+<ul>
+<li>Presiona <code>Alt+0</code> para abrir la ventana de commits.</li>
+<li>Haz clic en “<strong>Generate Commit Message with AI Assistant</strong>”.</li>
+<li>Edita el mensaje si es necesario.</li>
+</ul>
+<h2 id="personalizar-el-mensaje-de-commit">Personalizar el mensaje de commit</h2>
+<ul>
+<li>Presiona <code>Ctrl+Alt+S</code> para abrir la configuración.</li>
+<li>Luuego selecciona <strong>Tools | AI Assistant | Prompt Library</strong>.</li>
+<li>Especifica reglas como el número de caracteres requeridos o el idioma.</li>
+<li>Haz clic en <strong>Apply</strong>.</li>
+</ul>
+<h2 id="editar-y-mejorar-mensajes-de-commit">Editar y mejorar mensajes de commit</h2>
+<ul>
+<li>Abre la ventana de control de versiones presionando <code>Alt+9</code>.</li>
+<li>Haz clic derecho sobre el commit y selecciona “<strong>Edit Commit Message</strong>”.</li>
+<li>Haz clic en “<strong>Improve Commit Message with AI Assistant</strong>”.</li>
+<li>Edita el mensaje y haz clic en OK para guardar.</li>
+</ul>
+<h2 id="explicar-commits">Explicar commits</h2>
+<ul>
+<li>Selecciona uno o varios commits, haz clic derecho y selecciona “<strong>Explain Commit with AI Assistant</strong>”.</li>
+<li><strong>AI Assistant</strong> proporcionará un resumen de los commits seleccionados.</li>
+</ul>
+<h2 id="generar-título-y-descripción-para-pull-y-merge-requests">Generar título y descripción para pull y merge requests</h2>
+<ul>
+<li>Al crear un pull request o merge request, haz clic en “<strong>Generate a Title and Description with AI Assistant</strong>” en el campo de descripción.</li>
+</ul>
+<h2 id="resolver-conflictos-de-git-con-ai">Resolver conflictos de Git con AI</h2>
+<ul>
+<li>En el diálogo “<strong>Merge Revisions</strong>”, haz clic en “<strong>Merge with AI</strong>”.</li>
+<li>Revisa el resultado y haz clic en <strong>Apply</strong>.</li>
+<li>Si es necesario, puedes revertir cambios haciendo clic en “<strong>Revert</strong>”.</li>
+</ul>
+<h1 id="generar-documentación">Generar documentación</h1>
+<h2 id="generar-documentación-1">Generar documentación</h2>
+<ul>
+<li><p>Utilizando el <strong>AI Assistant</strong>, puedes generar documentación usando un Gran Modelo de Lenguaje (LLM).</p></li>
+<li><p>Coloca el cursor en el fragmento de código deseado y haz clic derecho para abrir el menú contextual.</p></li>
+<li><p>Presiona <code>Alt+Enter</code>. Selecciona “<strong>AI actions</strong>” y luego “<strong>Write documentation.</strong>”.</p></li>
+<li><p>El <strong>AI Assistant</strong> generará la documentación para ti.</p></li>
+<li><p>Alternativamente, en lugar de usar el menú contextual, escribe <code>/**</code>, presiona <strong>Enter</strong> y haz clic en “<strong>Generate with AI Assistant</strong>”.</p></li>
+<li><p>O ve a cualquier función o clase, inicia una nueva línea y escribe <code>"""</code>. Presiona <strong>Enter</strong> y haz clic en “<strong>Generate with AI Assistant</strong>”.</p></li>
+</ul>
+<h2 id="personalización-del-prompt">Personalización del prompt</h2>
+<ul>
+<li>Puedes personalizar el prompt para la acción de “<strong>Write Documentation</strong>” en <strong>Settings | Tools | AI Assistant | Prompt Library | Write Documentation.</strong>.</li>
+<li>Ajusta cómo se genera la documentación en función de tus necesidades específicas.</li>
+</ul>
+<h1 id="uso-de-la-ia-para-convertir-archivos-a-otro-lenguaje">Uso de la IA para convertir archivos a otro lenguaje</h1>
+<h2 id="conversión-completa-de-un-archivo-a-otro-lenguaje">Conversión completa de un archivo a otro lenguaje</h2>
+<ul>
+<li>Abra el archivo que desea convertir, coloque el cursor en cualquier parte del editor y haga clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, presione <code>Alt+Enter</code>.</li>
+<li>Seleccione <strong>AI Actions</strong> y luego <strong>Convert File to Another Language</strong>.</li>
+<li>En la lista que se abre, elija el lenguaje al que desea convertir el archivo actual.</li>
+<li>Después de la conversión, el archivo convertido se guarda como un archivo separado con una nueva extensión.</li>
+</ul>
+<h2 id="habilitar-la-conversión-de-código-a-otro-lenguaje-mediante-copiar-y-pegar">Habilitar la conversión de código a otro lenguaje mediante copiar y pegar</h2>
+<ul>
+<li>Presione <code>Ctrl+Alt+S</code> para abrir la configuración y luego seleccione <strong>Tools | AI Assistant</strong>.</li>
+<li>Active la opción <strong>Suggest converting pasted code to the language of the target file</strong> y haga clic en <strong>Apply</strong>.</li>
+<li>Ahora puede copiar el fragmento de código que desea convertir y pegarlo en el archivo en el que está trabajando.</li>
+<li>El <strong>AI Assistant</strong> detecta el lenguaje del código pegado y sugiere convertirlo al lenguaje del archivo abierto.</li>
+<li>Si hace clic en <strong>Convert</strong>, el código se convertirá al lenguaje del archivo de destino. El código en el lenguaje original también se pegará, pero comentado.</li>
+</ul>
+<h1 id="generación-de-pruebas">Generación de Pruebas</h1>
+<h2 id="generar-pruebas-unitarias">Generar Pruebas Unitarias</h2>
+<ul>
+<li>Ubica el cursor en la <strong>clase o método</strong> para el que deseas generar pruebas.</li>
+<li>Haz clic derecho o presiona <code>Alt+Enter</code> para abrir el menú contextual.</li>
+<li>Selecciona <strong>“AI Actions”</strong> y luego <strong>“Generate Unit Tests”</strong>.</li>
+</ul>
+<h2 id="inspeccionar-y-mejorar">Inspeccionar y Mejorar</h2>
+<ul>
+<li>El código generado se abrirá en una pestaña llamada <strong>“AI Diff”</strong>.</li>
+<li>Opciones disponibles:
+<ul>
+<li><strong>“Specify”</strong>: Añade nuevos requisitos y presiona <code>Enter</code>.</li>
+<li><strong>“Regenerate”</strong>: Genera nuevamente las pruebas.</li>
+<li><strong>“Customize Prompt”</strong>: Modifica el mensaje para mejorar el resultado.</li>
+</ul></li>
+</ul>
+<h2 id="guardar-las-pruebas">Guardar las Pruebas</h2>
+<ul>
+<li>Haz clic en <strong>“Accept all”</strong> para guardar el código generado.</li>
+<li>El archivo de prueba:
+<ul>
+<li>Se ubicará en el módulo de pruebas si existe.</li>
+<li>Caso contrario, se almacenará junto al archivo fuente.</li>
+</ul></li>
+</ul>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

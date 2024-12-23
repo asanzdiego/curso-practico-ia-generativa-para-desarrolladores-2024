@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="pandoc">
+  <meta name="description" content="Prompt Engineering" />
+  <meta name="author" content="Adolfo Sanz De Diego">
+  <title>Prompt Engineering</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../lib/reveal.js//css/reset.css">
+  <link rel="stylesheet" href="../lib/reveal.js//css/reveal.css">
+  <link rel="stylesheet" href="../lib/reveal.js-title-footer//plugin/title-footer/title-footer.css">
+  <link rel="stylesheet" href="../lib/reveal.js-menu//menu.css">
+<style type="text/css">code{white-space: pre; background-color: lightgrey;}</style>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="../lib/reveal.js//css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../lib/reveal.js//css/print/pdf.css' : '../lib/reveal.js//css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+
+  <style type="text/css">
+    body {
+      background: white !important;
+      background-color: white !important;
+    }
+    code{
+      white-space: pre;
+    }
+    .reveal pre code {
+      background: rgba(255, 255, 255, 0.7);
+      color: rgba(0, 0, 0, 0.7);
+    }
+    .reveal section img {
+      margin: 0px;
+      padding: 0px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 0px;
+    }
+    strong {
+      color: #777
+    }
+    a:hover {
+      text-decoration: underline !important;
+    }
+    h1.title {
+      font-size: 200% !important;
+    }
+    h1 {
+      font-size: 200% !important;
+    }
+    h2 {
+      font-size: 150% !important;
+    }
+    h3 {
+      font-size: 100% !important;
+    }
+    #toggle-chalkboard {
+      inset: auto auto 30px 70px !important;
+    }
+    #toggle-notes {
+      inset: auto auto 30px 110px !important;
+    }
+    @media print {
+      #only-print-parent { display: table !important; }
+      #only-print-child { display: table-cell !important; vertical-align: middle;}
+      h1.title { font-size: 300% !important;}
+      h1 { font-size: 300% !important; }
+      h2 { font-size: 200% !important; }
+      h3 { font-size: 150% !important; }
+    }
+    footer p {
+      font-size: 200% !important;
+      margin-top: -3% !important;
+    }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="../lib/reveal.js//lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section class="only-print-parent"  id="title-slide">
+    <div class="only-print-child">
+      <h1 class="title">Prompt Engineering</h2>
+      <h2 class="author">Adolfo Sanz De Diego</h2>
+      <h3 class="date">Diciembre 2024</h3>
+    </div>
+</section>
+
+<section>
+<section id="introducción-a-prompt-engineering" class="title-slide slide level1">
+<h2>Introducción a Prompt Engineering</h2>
+
+</section>
+<section id="qué-es-prompt-engineering" class="slide level2">
+<h2>¿Qué es Prompt Engineering?</h2>
+<ul>
+<li><strong>Definición</strong>:
+<ul>
+<li>Técnica para diseñar y optimizar instrucciones dadas a un modelo de IA generativa.</li>
+</ul></li>
+<li><strong>Objetivo principal</strong>:
+<ul>
+<li>Obtener resultados más precisos y útiles ajustando las entradas al modelo.</li>
+</ul></li>
+<li><strong>Ejemplo básico</strong>:
+<ul>
+<li>Comparar “Resume el texto” vs. “Resume este artículo en 3 puntos clave para un público técnico”.</li>
+</ul></li>
+</ul>
+</section>
+<section id="importancia-de-los-prompts" class="slide level2">
+<h2>Importancia de los Prompts</h2>
+<ul>
+<li><strong>Impacto directo en resultados</strong>:
+<ul>
+<li>La calidad del prompt define la calidad de la salida generada.</li>
+</ul></li>
+<li><strong>Eficiencia</strong>:
+<ul>
+<li>Prompts bien diseñados reducen iteraciones y ahorran tiempo.</li>
+</ul></li>
+<li><strong>Flexibilidad</strong>:
+<ul>
+<li>Los prompts permiten personalizar respuestas según necesidades específicas.</li>
+</ul></li>
+<li><strong>Casos de uso clave</strong>:
+<ul>
+<li>Redacción creativa, resolución de problemas, generación de código y más.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ejemplos-para-desarrollo-de-software-i" class="slide level2">
+<h2>Ejemplos para Desarrollo de Software (I)</h2>
+<ul>
+<li><strong>Generación de Código</strong>:
+<ul>
+<li>Crear funciones a partir de descripciones como: “Escribe una función Java que ordene una lista de números.”</li>
+</ul></li>
+<li><strong>Documentación Automática</strong>:
+<ul>
+<li>Generar documentación técnica basada en código existente.</li>
+</ul></li>
+<li><strong>Debugging</strong>:
+<ul>
+<li>Pedir explicaciones sobre errores en fragmentos de código.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ejemplos-para-desarrollo-de-software-ii" class="slide level2">
+<h2>Ejemplos para Desarrollo de Software (II)</h2>
+<ul>
+<li><strong>Pruebas Automáticas</strong>:
+<ul>
+<li>Crear casos de prueba a partir de requisitos específicos.</li>
+</ul></li>
+<li><strong>Optimización</strong>:
+<ul>
+<li>Solicitar recomendaciones para mejorar el rendimiento de un fragmento de código.</li>
+</ul></li>
+<li><strong>Commits</strong>:
+<ul>
+<li>Generar mensajes en los commits en función de las diferencias.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="historia-de-los-modelos-generativos" class="title-slide slide level1">
+<h2>Historia de los Modelos Generativos</h2>
+
+</section>
+<section id="hasta-el-2017" class="slide level2">
+<h2>Hasta el 2017</h2>
+<ul>
+<li><strong>Décadas tempranas</strong>:
+<ul>
+<li>Los modelos de lenguaje comienzan con técnicas estadísticas simples.</li>
+</ul></li>
+<li><strong>Años 2010</strong>:
+<ul>
+<li>Avances significativos gracias a redes neuronales.</li>
+</ul></li>
+<li><strong>2017</strong>:
+<ul>
+<li>Publicación del artículo “Attention is All You Need”, que introduce el mecanismo de atención y los modelos Transformer, revolucionando el campo.</li>
+</ul></li>
+</ul>
+</section>
+<section id="desde-el-2017" class="slide level2">
+<h2>Desde el 2017</h2>
+<ul>
+<li><strong>2018</strong>:
+<ul>
+<li>OpenAI lanza GPT (Generative Pre-trained Transformer), demostrando el poder de los modelos de lenguaje preentrenados.</li>
+</ul></li>
+<li><strong>Años recientes</strong>:
+<ul>
+<li>Surgen modelos más avanzados como DALL·E (Imagen), Codex (Código), Whisper (Transcripciones), Sora (Video), Suno (Música) y modelos multimodales, ampliando las aplicaciones de la IA generativa.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="conceptos-clave" class="title-slide slide level1">
+<h2>Conceptos clave</h2>
+
+</section>
+<section id="tokens-i" class="slide level2">
+<h2>Tokens (I)</h2>
+<ul>
+<li>Las <strong>unidades básicas que los modelos procesan</strong>, como palabras, subpalabras o símbolos.</li>
+<li>Por ejemplo, “inteligencia” podría dividirse en varios tokens según el modelo.</li>
+<li>El coste de los modelos en la nube en forma de API suele ir por número de tokens procesados.</li>
+</ul>
+</section>
+<section id="tokens-ii" class="slide level2">
+<h2>Tokens (II)</h2>
+<p><a href="https://platform.openai.com/tokenizer" class="uri">https://platform.openai.com/tokenizer</a></p>
+<p><img data-src="../img/tokens.png" class="center" style="width:50.0%" /></p>
+</section>
+<section id="embeddings-i" class="slide level2">
+<h2>Embeddings (I)</h2>
+<ul>
+<li>Es una <strong>representación matemática que convierte datos complejos en vectores</strong>, capturando similitudes y relaciones en un espacio multidimensional.</li>
+<li>Es fundamental en IA para reducir la complejidad y permitir que los modelos procesen texto, imágenes o audios de forma eficiente.</li>
+<li>Se usa en tareas como búsqueda semántica, sistemas de recomendación y clasificación, representando información de manera compacta y útil.</li>
+</ul>
+</section>
+<section id="embeddings-ii" class="slide level2">
+<h2>Embeddings (II)</h2>
+<p><img data-src="../img/embeddings.png" class="center" style="width:50.0%" /></p>
+</section>
+<section id="contexto" class="slide level2">
+<h2>Contexto</h2>
+<ul>
+<li>Se refiere a la <strong>información proporcionada como entrada</strong> que guía la generación de respuestas.</li>
+<li>Incluye texto previo, instrucciones específicas y datos relevantes que ayudan al modelo a entender el propósito y mantener coherencia.</li>
+<li>Los modelos tienen un <strong>límite de tokens</strong> que pueden procesar en una sola interacción.</li>
+</ul>
+</section>
+<section id="tipos-de-modelos-generativos" class="slide level2">
+<h2>Tipos de modelos generativos</h2>
+<ul>
+<li>De texto a texto.</li>
+<li>De texto a imagen y de imagen a texto.</li>
+<li>De texto a audio y de audio a texto.</li>
+<li>De texto a video y de viideo a texto.</li>
+<li>Multimodales (pueden recibir texto, imágenes, vídeos, audios, etc.) y generan cualquier tipo de resultado.</li>
+</ul>
+</section></section>
+<section>
+<section id="características-de-un-buen-prompt" class="title-slide slide level1">
+<h2>Características de un buen prompt</h2>
+
+</section>
+<section id="claridad-y-concisión" class="slide level2">
+<h2>Claridad y concisión</h2>
+<ul>
+<li>Un buen prompt debe ser claro y directo.</li>
+<li>Evitar ambigüedades o términos que puedan ser interpretados de múltiples formas.</li>
+</ul>
+</section>
+<section id="contexto-suficiente" class="slide level2">
+<h2>Contexto suficiente</h2>
+<ul>
+<li>Proporcionar el contexto necesario para que la IA comprenda la intención del usuario.</li>
+<li>Incluir detalles relevantes como objetivos, audiencia, o formato deseado.</li>
+</ul>
+</section>
+<section id="especificidad" class="slide level2">
+<h2>Especificidad</h2>
+<ul>
+<li>Detallar claramente lo que se espera en la respuesta.</li>
+<li>Evitar generalidades que puedan llevar a respuestas vagas o irrelevantes.</li>
+</ul>
+</section>
+<section id="estructura" class="slide level2">
+<h2>Estructura</h2>
+<ul>
+<li>Formular el prompt con una estructura lógica y ordenada.</li>
+<li>Utilizar listas, preguntas claras o ejemplos para guiar a la IA.</li>
+</ul>
+</section></section>
+<section>
+<section id="tipos-de-prompts" class="title-slide slide level1">
+<h2>Tipos de prompts</h2>
+
+</section>
+<section id="directos" class="slide level2">
+<h2>Directos</h2>
+<ul>
+<li>Preguntas o comandos simples y directos.</li>
+</ul>
+</section>
+<section id="creativos" class="slide level2">
+<h2>Creativos</h2>
+<ul>
+<li>Estimulan respuestas únicas o fuera de lo común.</li>
+</ul>
+</section>
+<section id="narrativos" class="slide level2">
+<h2>Narrativos</h2>
+<ul>
+<li>Orientados a desarrollar historias o explicaciones detalladas.</li>
+</ul>
+</section>
+<section id="estructurados" class="slide level2">
+<h2>Estructurados</h2>
+<ul>
+<li>Usan un formato claro, como tablas, listas o párrafos con secciones específicas.</li>
+</ul>
+</section>
+<section id="reflexivos" class="slide level2">
+<h2>Reflexivos</h2>
+<ul>
+<li>Invitan a un análisis profundo o comparaciones.</li>
+</ul>
+</section></section>
+<section>
+<section id="mejorar-la-precisión-y-relevancia-de-las-respuestas" class="title-slide slide level1">
+<h2>Mejorar la precisión y relevancia de las respuestas</h2>
+
+</section>
+<section id="reformulación-del-prompt" class="slide level2">
+<h2>Reformulación del prompt</h2>
+<ul>
+<li>Reescribir el prompt para hacerlo más claro o específico.</li>
+<li>Evitar preguntas demasiado abiertas o genéricas.</li>
+</ul>
+</section>
+<section id="uso-de-ejemplos" class="slide level2">
+<h2>Uso de ejemplos</h2>
+<ul>
+<li>Proporcionar ejemplos específicos en el prompt para orientar a la IA.</li>
+</ul>
+</section>
+<section id="definir-el-formato-esperado" class="slide level2">
+<h2>Definir el formato esperado</h2>
+<ul>
+<li>Incluir en el prompt cómo debe estructurarse la respuesta (listas, párrafos, tablas, etc.).</li>
+</ul>
+</section>
+<section id="iteración" class="slide level2">
+<h2>Iteración</h2>
+<ul>
+<li>Si la respuesta inicial no es satisfactoria, ajustar el prompt con más detalles o nueva información.</li>
+</ul>
+</section>
+<section id="establecer-límites-o-parámetros" class="slide level2">
+<h2>Establecer límites o parámetros</h2>
+<ul>
+<li>Definir restricciones como la longitud máxima de la respuesta o el tono deseado.</li>
+</ul>
+</section></section>
+<section>
+<section id="utilización-de-ejemplos-en-el-prompt" class="title-slide slide level1">
+<h2>Utilización de ejemplos en el Prompt</h2>
+
+</section>
+<section id="zero-shot-prompting" class="slide level2">
+<h2>Zero-Shot Prompting</h2>
+<ul>
+<li>Solicitar directamente la tarea sin ejemplos previos.</li>
+</ul>
+</section>
+<section id="one-shot-prompting" class="slide level2">
+<h2>One-Shot Prompting</h2>
+<ul>
+<li>Proporcionar un ejemplo para guiar la respuesta.</li>
+</ul>
+</section>
+<section id="few-shot-prompting" class="slide level2">
+<h2>Few-Shot Prompting</h2>
+<ul>
+<li>Ofrecer múltiples ejemplos para contextualizar mejor la tarea.</li>
+</ul>
+</section></section>
+<section>
+<section id="ajuste-de-las-respuestas" class="title-slide slide level1">
+<h2>Ajuste de las respuestas</h2>
+
+</section>
+<section id="ajuste-del-tono" class="slide level2">
+<h2>Ajuste del Tono</h2>
+<ul>
+<li>Adaptar la formalidad o la calidez de la respuesta.</li>
+</ul>
+</section>
+<section id="ajuste-del-estilo" class="slide level2">
+<h2>Ajuste del Estilo</h2>
+<ul>
+<li>Cambiar el formato o enfoque de la respuesta.</li>
+</ul>
+</section>
+<section id="ajuste-de-la-formalidad" class="slide level2">
+<h2>Ajuste de la Formalidad</h2>
+<ul>
+<li>Modificar el nivel de formalidad según el público objetivo.</li>
+</ul>
+</section>
+<section id="uso-de-roles" class="slide level2">
+<h2>Uso de Roles</h2>
+<ul>
+<li>Asignar un rol específico al generador de contenido.</li>
+</ul>
+</section>
+<section id="adaptación-a-públicos-específicos" class="slide level2">
+<h2>Adaptación a Públicos Específicos</h2>
+<ul>
+<li>Personalizar la respuesta para una audiencia específica.</li>
+</ul>
+</section>
+<section id="uso-de-plantillas" class="slide level2">
+<h2>Uso de Plantillas</h2>
+<ul>
+<li>Crear estructuras reutilizables para tareas frecuentes.</li>
+</ul>
+</section>
+<section id="uso-de-delimitadores" class="slide level2">
+<h2>Uso de Delimitadores</h2>
+<ul>
+<li>Delimitar entradas o contexto para mayor claridad.</li>
+</ul>
+</section>
+<section id="prompts-para-tareas-específicas" class="slide level2">
+<h2>Prompts para Tareas Específicas</h2>
+<ul>
+<li>Diseñar prompts para casos concretos.</li>
+</ul>
+</section></section>
+<section>
+<section id="distintos-tonos-y-estilos" class="title-slide slide level1">
+<h2>Distintos Tonos y Estilos</h2>
+
+</section>
+<section id="formal" class="slide level2">
+<h2>Formal</h2>
+<ul>
+<li>Se utiliza para comunicar ideas con precisión, seriedad y profesionalismo.</li>
+</ul>
+</section>
+<section id="conversacional" class="slide level2">
+<h2>Conversacional</h2>
+<ul>
+<li>Es amigable y cercano, ideal para mantener una interacción más relajada.</li>
+</ul>
+</section>
+<section id="educativo" class="slide level2">
+<h2>Educativo</h2>
+<ul>
+<li>Orienta hacia la enseñanza y la claridad, adecuado para explicar conceptos paso a paso.</li>
+</ul>
+</section>
+<section id="persuasivo" class="slide level2">
+<h2>Persuasivo</h2>
+<ul>
+<li>Busca convencer al lector o usuario de adoptar una idea, enfoque o herramienta.</li>
+</ul>
+</section>
+<section id="humorístico" class="slide level2">
+<h2>Humorístico</h2>
+<ul>
+<li>Introduce ligereza o humor para hacer el contenido más atractivo y ameno.</li>
+</ul>
+</section>
+<section id="empático" class="slide level2">
+<h2>Empático</h2>
+<ul>
+<li>Transmite apoyo y comprensión, ideal para conectar con los sentimientos del lector.</li>
+</ul>
+</section>
+<section id="entusiasta" class="slide level2">
+<h2>Entusiasta</h2>
+<ul>
+<li>Muestra motivación y pasión, ideal para inspirar al lector o usuario.</li>
+</ul>
+</section>
+<section id="neutral" class="slide level2">
+<h2>Neutral</h2>
+<ul>
+<li>Proporciona información imparcial, precisa y sin juicios.</li>
+</ul>
+</section>
+<section id="creativo" class="slide level2">
+<h2>Creativo</h2>
+<ul>
+<li>Explora ideas innovadoras o contextos imaginativos para resolver problemas.</li>
+</ul>
+</section>
+<section id="autoritario" class="slide level2">
+<h2>Autoritario</h2>
+<ul>
+<li>Comunica seguridad y experiencia para guiar al lector con determinación.</li>
+</ul>
+</section>
+<section id="directo" class="slide level2">
+<h2>Directo</h2>
+<ul>
+<li>Va al grano, ofreciendo respuestas rápidas y claras.</li>
+</ul>
+</section>
+<section id="inspirador" class="slide level2">
+<h2>Inspirador</h2>
+<ul>
+<li>Busca motivar al lector y estimular su confianza o creatividad.</li>
+</ul>
+</section>
+<section id="técnico" class="slide level2">
+<h2>Técnico</h2>
+<ul>
+<li>Se enfoca en detalles complejos y específicos, usando lenguaje técnico.</li>
+</ul>
+</section></section>
+<section>
+<section id="técnicas-avanzadas-de-prompt-engineering" class="title-slide slide level1">
+<h2>Técnicas Avanzadas de Prompt Engineering</h2>
+
+</section>
+<section id="cadena-de-pensamiento-cot" class="slide level2">
+<h2>Cadena de Pensamiento (CoT)</h2>
+<ul>
+<li>Descomponer una tarea compleja en pasos más pequeños y claros.</li>
+</ul>
+</section>
+<section id="prompts-negativos" class="slide level2">
+<h2>Prompts Negativos</h2>
+<ul>
+<li>Especificar qué no incluir en la respuesta.</li>
+</ul>
+</section>
+<section id="prompts-iterativos" class="slide level2">
+<h2>Prompts Iterativos</h2>
+<ul>
+<li>Refinar progresivamente las respuestas a través de ajustes iterativos.</li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../lib/reveal.js//lib/js/head.min.js"></script>
+  <script src="../lib/reveal.js//js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        pdfMaxPagesPerSlide: 1,
+        history: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+        height: 720,
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.9,
+        maxScale: 1.1,
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+        menu: {
+            // Specifies which side of the presentation the menu will
+            // be shown. Use 'left' or 'right'.
+            side: 'left',
+
+            // Add slide numbers to the titles in the slide list.
+            // Use 'true' or format string (same as reveal.js slide numbers)
+            numbers: false,
+
+            // Specifies which slide elements will be used for generating
+            // the slide titles in the menu. The default selects the first
+            // heading element found in the slide, but you can specify any
+            // valid css selector and the text from the first matching
+            // element will be used.
+            // Note: that a section data-menu-title attribute or an element
+            // with a menu-title class will take precedence over this option
+            titleSelector: 'h1, h2, h3, h4, h5, h6',
+
+            // Hide slides from the menu that do not have a title.
+            // Set to 'true' to only list slides with titles.
+            hideMissingTitles: false,
+
+            // Add markers to the slide titles to indicate the
+            // progress through the presentation
+            markers: false,
+
+            // Specify custom panels to be included in the menu, by
+            // providing an array of objects with 'title', 'icon'
+            // properties, and either a 'src' or 'content' property.
+            custom: false,
+
+            // Specifies the themes that will be available in the themes
+            // menu panel. Set to 'false' to hide themes panel.
+            themes: [
+                { name: 'Black', theme: '../lib/reveal.js//css/theme/black.css' },
+                { name: 'White', theme: '../lib/reveal.js//css/theme/white.css' },
+                { name: 'League', theme: '../lib/reveal.js//css/theme/league.css' },
+                { name: 'Sky', theme: '../lib/reveal.js//css/theme/sky.css' },
+                { name: 'Beige', theme: '../lib/reveal.js//css/theme/beige.css' },
+                { name: 'Simple', theme: '../lib/reveal.js//css/theme/simple.css' },
+                { name: 'Serif', theme: '../lib/reveal.js//css/theme/serif.css' },
+                { name: 'Blood', theme: '../lib/reveal.js//css/theme/blood.css' },
+                { name: 'Night', theme: '../lib/reveal.js//css/theme/night.css' },
+                { name: 'Moon', theme: '../lib/reveal.js//css/theme/moon.css' },
+                { name: 'Solarized', theme: '../lib/reveal.js//css/theme/solarized.css' }
+            ],
+
+            // Specifies if the transitions menu panel will be shown.
+            transitions: true,
+
+            // Adds a menu button to the slides to open the menu panel.
+            // Set to 'false' to hide the button.
+            openButton: true,
+
+            // If 'true' allows the slide number in the presentation to
+            // open the menu panel. The reveal.js slideNumber option must
+            // be displayed for this to take effect
+            openSlideNumber: false,
+
+            // If true allows the user to open and navigate the menu using
+            // the keyboard. Standard keyboard interaction with reveal
+            // will be disabled while the menu is open.
+            keyboard: true
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },			// clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },			// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() },		// downlad recorded chalkboard drawing when 'd' is pressed
+          88: function() { RevealChalkboard.colorNext() },		// cycle colors forward when 'x' is pressed
+          89: function() { RevealChalkboard.colorPrev() },		// cycle colors backward when 'y' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/reveal.js-title-footer//plugin/title-footer/title-footer.js', async: true, callback: function() { 
+              title_footer.initialize(null, 'rgba(0,0,0,0)');
+            } },
+          { src: '../lib/reveal.js-menu//menu.js', async: true },
+          { src: '../lib/reveal.js-plugins/chalkboard//chalkboard.js', async: true },
+          { src: '../lib/reveal.js//lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../lib/reveal.js//plugin/zoom-js/zoom.js', async: true },
+          { src: '../lib/reveal.js//plugin/math/math.js', async: true },
+          { src: '../lib/reveal.js//plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="Introducción a la IA Generativa">
+  <meta name="author" content="Adolfo Sanz De Diego" />
+  <title>Introducción a la IA Generativa</title>
+  <style type="text/css">
+    pre, code {
+      background-color: #ddd;
+      white-space: pre;
+    }
+    aside.notes{
+      background-color: yellow;
+    }
+    img.center {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="container">
+<header id="title-block-header">
+<h1 class="title">Introducción a la IA Generativa</h1>
+<p class="author">Adolfo Sanz De Diego</p>
+<p class="date">Diciembre 2024</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#definición-y-aplicaciones">Definición y aplicaciones</a>
+<ul>
+<li><a href="#qué-es-la-ia-generativa">¿Qué es la IA Generativa?</a></li>
+<li><a href="#aplicaciones">Aplicaciones</a></li>
+</ul></li>
+<li><a href="#historia">Historia</a>
+<ul>
+<li><a href="#orígenes-de-la-ia">Orígenes de la IA</a></li>
+<li><a href="#invierno-de-la-ia">Invierno de la IA</a></li>
+<li><a href="#orígenes-de-la-ia-generativa">Orígenes de la IA Generativa</a></li>
+<li><a href="#surgimiento-de-la-ia-generativa">Surgimiento de la IA Generativa</a></li>
+<li><a href="#la-revolución-de-la-ia-generativa">La revolución de la IA Generativa</a></li>
+</ul></li>
+<li><a href="#modelos-generativos">Modelos Generativos</a>
+<ul>
+<li><a href="#redes-generativas-adversarias-gans">Redes Generativas Adversarias (GANs)</a></li>
+<li><a href="#modelos-de-difusión">Modelos de Difusión</a></li>
+<li><a href="#transformadores">Transformadores</a></li>
+</ul></li>
+<li><a href="#beneficios-y-desafíos">Beneficios y desafíos</a>
+<ul>
+<li><a href="#beneficios">Beneficios</a></li>
+<li><a href="#desafíos">Desafíos</a></li>
+</ul></li>
+<li><a href="#futuro">Futuro</a>
+<ul>
+<li><a href="#retos-éticos">Retos Éticos</a></li>
+<li><a href="#tendencias-tecnológicas">Tendencias Tecnológicas</a></li>
+<li><a href="#avances-en-hardware">Avances en Hardware</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="definición-y-aplicaciones">Definición y aplicaciones</h1>
+<h2 id="qué-es-la-ia-generativa">¿Qué es la IA Generativa?</h2>
+<ul>
+<li>Sistemas que pueden <strong>generar texto, imágenes, música, vídeo y otros contenidos</strong>.</li>
+<li>Utiliza <strong>modelos de aprendizaje profundo</strong> para aprender patrones y estructuras de datos existentes.</li>
+</ul>
+<h2 id="aplicaciones">Aplicaciones</h2>
+<ul>
+<li><p>Uso en <strong>marketing, entretenimiento y periodismo</strong>.</p></li>
+<li><p>Herramientas para <strong>artistas y diseñadores</strong>.</p></li>
+<li><p>Creación de <strong>material educativo personalizado</strong>.</p></li>
+<li><p>Simulaciones y <strong>entornos de aprendizaje interactivos</strong>.</p></li>
+<li><p>Creación de <strong>asistentes personalizados</strong>.</p></li>
+<li><p>Diseño de <strong>nuevos medicamentos y tratamientos</strong>.</p></li>
+<li><p>Asistencia en <strong>diagnósticos y análisis médicos</strong>.</p></li>
+<li><p>Uso en <strong>desarrollo de software y scripts de sistemas</strong>.</p></li>
+</ul>
+<h1 id="historia">Historia</h1>
+<h2 id="orígenes-de-la-ia">Orígenes de la IA</h2>
+<ul>
+<li><strong>Decadas de 1950 y 1960:</strong>
+<ul>
+<li>Expectativas muy altas sobre la IA.</li>
+</ul></li>
+<li><strong>1950:</strong>
+<ul>
+<li>Publicación del <strong>Test de Turing</strong>.</li>
+</ul></li>
+<li><strong>1956:</strong>
+<ul>
+<li>Nace el término “Inteligencia Artificial” (<strong>John McCarthy</strong>).</li>
+</ul></li>
+<li><strong>1964:</strong>
+<ul>
+<li>Primer chatbot <strong>ELIZA</strong>.</li>
+</ul></li>
+</ul>
+<h2 id="invierno-de-la-ia">Invierno de la IA</h2>
+<ul>
+<li><strong>Décadas de 1970 y 1980:</strong>
+<ul>
+<li>Reducción del interés y baja financiación.</li>
+</ul></li>
+</ul>
+<h2 id="orígenes-de-la-ia-generativa">Orígenes de la IA Generativa</h2>
+<ul>
+<li><strong>Década de 1990:</strong>
+<ul>
+<li>Resurgimiento con avances en aprendizaje automático.</li>
+</ul></li>
+<li><strong>1997:</strong>
+<ul>
+<li>Deep Blue de <strong>IBM</strong> vence al campeón mundial de ajedrez <strong>Garry Kasparov</strong>.</li>
+</ul></li>
+<li><strong>Década de 2000:</strong>
+<ul>
+<li>Desarrollo de <strong>redes neuronales</strong> y algoritmos más avanzados.</li>
+</ul></li>
+</ul>
+<h2 id="surgimiento-de-la-ia-generativa">Surgimiento de la IA Generativa</h2>
+<ul>
+<li><strong>2014:</strong>
+<ul>
+<li>Redes Generativas Adversarias (GANs) introducidos por <strong>Ian Goodfellow</strong>.</li>
+</ul></li>
+<li><strong>2015:</strong>
+<ul>
+<li>Modelos de Difusión que se basan en las <strong>cadenas de Markov</strong>.</li>
+</ul></li>
+<li><strong>2017:</strong>
+<ul>
+<li>Transformadores introducides en el paper <strong>Attention Is All You Need</strong>.</li>
+</ul></li>
+</ul>
+<h2 id="la-revolución-de-la-ia-generativa">La revolución de la IA Generativa</h2>
+<ul>
+<li><strong>2018</strong>:
+<ul>
+<li>OpenAI lanza <strong>GPT</strong> (Transformador Pre-emntrenado Generativo).</li>
+</ul></li>
+<li><strong>2021:</strong>
+<ul>
+<li>Lanzamiendo de <strong>DALL-E</strong> de OpenIA.</li>
+</ul></li>
+<li><strong>2023:</strong>
+<ul>
+<li>Lanzamiento de <strong>ChatGPT</strong> de OpenIA.</li>
+</ul></li>
+</ul>
+<h1 id="modelos-generativos">Modelos Generativos</h1>
+<h2 id="redes-generativas-adversarias-gans">Redes Generativas Adversarias (GANs)</h2>
+<ul>
+<li>Introducidos por Ian Goodfellow en 2014.</li>
+<li>Consisten en <strong>dos redes neuronales</strong>: el generador y el discriminador, que <strong>compiten entre sí para mejorar la calidad de las muestras generadas</strong>.
+<ul>
+<li>El <strong>generador</strong> crea datos falsos que se asemejan a los datos reales.</li>
+<li>El <strong>discriminador</strong> evalúa si los datos son reales o generados.</li>
+</ul></li>
+</ul>
+<h2 id="modelos-de-difusión">Modelos de Difusión</h2>
+<ul>
+<li>Los modelos de difusión transforman datos estructurados en ruido (difusión) y luego revierten el proceso para generar contenido (reversión).
+<ul>
+<li><strong>Fase Forward (Difusión):</strong> Los datos originales se corrompen añadiendo ruido gaussiano en múltiples pasos.</li>
+<li><strong>Fase Backward (Reversión):</strong> Se aprende a revertir el proceso de ruido para reconstruir los datos originales.</li>
+</ul></li>
+</ul>
+<h2 id="transformadores">Transformadores</h2>
+<ul>
+<li>Fueron introducidas en el artículo “Attention is All You Need” en 2017.</li>
+<li>Utilizan <strong>mecanismos de atención</strong> para procesar y generar secuencias de texto de alta calidad.
+<ul>
+<li><strong>Codificador</strong>: Procesa la entrada y genera una representación.</li>
+<li><strong>Descodificador</strong>: Toma la representación del codificador y genera la salida.</li>
+</ul></li>
+</ul>
+<h1 id="beneficios-y-desafíos">Beneficios y desafíos</h1>
+<h2 id="beneficios">Beneficios</h2>
+<ul>
+<li><p>Aceleración de <strong>procesos creativos y de producción</strong>.</p></li>
+<li><p>Reducción de <strong>costos y tiempos</strong>.</p></li>
+<li><p>Creación de <strong>contenidos y productos</strong> altamente personalizados.</p></li>
+<li><p>Mejora de la <strong>experiencia del usuario</strong>.</p></li>
+<li><p>Apertura de <strong>nuevas posibilidades creativas</strong>.</p></li>
+<li><p>Facilita el <strong>descubrimiento de nuevas ideas</strong> y enfoques.</p></li>
+<li><p>Creación de <strong>recursos accesibles</strong> para personas con <strong>discapacidades</strong>.</p></li>
+<li><p>Creación de <strong>asistentes virtuales</strong> que pueden interactuar de manera más natural y humana con los usuarios.</p></li>
+</ul>
+<h2 id="desafíos">Desafíos</h2>
+<ul>
+<li><p>Dificultad para garantizar la <strong>precisión y veracidad</strong> de los contenidos generados.</p></li>
+<li><p>Pérdida potencial de <strong>habilidades creativas humanas</strong>.</p></li>
+<li><p>Riesgos asociados con el <strong>uso indebido</strong> de datos generados (fakenews).</p></li>
+<li><p>Preocupaciones sobre la <strong>protección de datos personales</strong>.</p></li>
+<li><p>Preocupaciones relacionadas con los <strong>derechos de autor</strong> y la <strong>propiedad intelectual</strong>.</p></li>
+<li><p>Posibles efectos en el <strong>mercado laboral</strong> y las <strong>industrias creativas</strong>.</p></li>
+<li><p>Riesgo de <strong>reproducción y amplificación</strong> de sesgos existentes.</p></li>
+<li><p>Importancia de la <strong>justicia y la no discriminación</strong> en los algoritmos.</p></li>
+</ul>
+<h1 id="futuro">Futuro</h1>
+<h2 id="retos-éticos">Retos Éticos</h2>
+<ul>
+<li><strong>Sesgos:</strong>
+<ul>
+<li>Los modelos generativos pueden perpetuar sesgos presentes en los datos de entrenamiento.</li>
+</ul></li>
+<li><strong>Desinformación:</strong>
+<ul>
+<li>Riesgo de crear contenido falso extremadamente convincente (deepfakes, noticias falsas).</li>
+</ul></li>
+<li><strong>Propiedad intelectual:</strong>
+<ul>
+<li>Debates sobre la autoría de contenidos generados por IA.</li>
+</ul></li>
+</ul>
+<h2 id="tendencias-tecnológicas">Tendencias Tecnológicas</h2>
+<ul>
+<li><strong>Modelos más eficientes:</strong>
+<ul>
+<li>Reducción del costo computacional mediante optimizaciones.</li>
+</ul></li>
+<li><strong>Multimodalidad:</strong>
+<ul>
+<li>Modelos capaces de procesar y generar datos en múltiples modalidades (texto, imagen, audio, video).</li>
+</ul></li>
+<li><strong>Autoaprendizaje continuo:</strong>
+<ul>
+<li>Modelos que se adaptan y actualizan dinámicamente con nuevos datos.</li>
+</ul></li>
+</ul>
+<h2 id="avances-en-hardware">Avances en Hardware</h2>
+<ul>
+<li><strong>Chips especializados:</strong>
+<ul>
+<li>Desarrollo de hardware dedicado a la IA generativa.</li>
+</ul></li>
+<li><strong>Computación cuántica:</strong>
+<ul>
+<li>Promete revolucionar la velocidad y capacidad de procesamiento de modelos generativos.</li>
+</ul></li>
+<li><strong>Energía sostenible:</strong>
+<ul>
+<li>Creciente enfoque en reducir el impacto ambiental de entrenar modelos grandes.</li>
+</ul></li>
+</ul>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</body>
+</html>

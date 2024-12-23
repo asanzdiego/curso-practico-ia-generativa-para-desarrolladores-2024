@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="pandoc">
+  <meta name="description" content="IntelliJ IDEA AI Assistant" />
+  <meta name="author" content="Adolfo Sanz De Diego">
+  <title>IntelliJ IDEA AI Assistant</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../lib/reveal.js//css/reset.css">
+  <link rel="stylesheet" href="../lib/reveal.js//css/reveal.css">
+  <link rel="stylesheet" href="../lib/reveal.js-title-footer//plugin/title-footer/title-footer.css">
+  <link rel="stylesheet" href="../lib/reveal.js-menu//menu.css">
+<style type="text/css">code{white-space: pre; background-color: lightgrey;}</style>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="../lib/reveal.js//css/theme/beige.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? '../lib/reveal.js//css/print/pdf.css' : '../lib/reveal.js//css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+
+  <style type="text/css">
+    body {
+      background: white !important;
+      background-color: white !important;
+    }
+    code{
+      white-space: pre;
+    }
+    .reveal pre code {
+      background: rgba(255, 255, 255, 0.7);
+      color: rgba(0, 0, 0, 0.7);
+    }
+    .reveal section img {
+      margin: 0px;
+      padding: 0px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 0px;
+    }
+    strong {
+      color: #777
+    }
+    a:hover {
+      text-decoration: underline !important;
+    }
+    h1.title {
+      font-size: 200% !important;
+    }
+    h1 {
+      font-size: 200% !important;
+    }
+    h2 {
+      font-size: 150% !important;
+    }
+    h3 {
+      font-size: 100% !important;
+    }
+    #toggle-chalkboard {
+      inset: auto auto 30px 70px !important;
+    }
+    #toggle-notes {
+      inset: auto auto 30px 110px !important;
+    }
+    @media print {
+      #only-print-parent { display: table !important; }
+      #only-print-child { display: table-cell !important; vertical-align: middle;}
+      h1.title { font-size: 300% !important;}
+      h1 { font-size: 300% !important; }
+      h2 { font-size: 200% !important; }
+      h3 { font-size: 150% !important; }
+    }
+    footer p {
+      font-size: 200% !important;
+      margin-top: -3% !important;
+    }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="../lib/reveal.js//lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section class="only-print-parent"  id="title-slide">
+    <div class="only-print-child">
+      <h1 class="title">IntelliJ IDEA AI Assistant</h2>
+      <h2 class="author">Adolfo Sanz De Diego</h2>
+      <h3 class="date">Diciembre 2024</h3>
+    </div>
+</section>
+
+<section>
+<section id="introducción" class="title-slide slide level1">
+<h2>Introducción</h2>
+
+</section>
+<section id="qué-es-el-ai-assistant" class="slide level2">
+<h2>¿Qué es el AI Assistant?</h2>
+<ul>
+<li>Herramienta impulsada por <strong>inteligencia artificial</strong> para el desarrollo de software.</li>
+<li>Funcionalidades como explicar código, responder preguntas, generar documentación, y más.</li>
+</ul>
+</section>
+<section id="consideraciones-previas" class="slide level2">
+<h2>Consideraciones previas</h2>
+<ul>
+<li>El plugin <strong>AI Assistant no viene incluido por defecto</strong> en IntelliJ IDEA y debe ser habilitado manualmente.</li>
+<li>El plugin conecta al usuario con grandes modelos del lenguaje (<strong>LLM</strong>).</li>
+<li>Las solicitudes y fragmentos de código se envían al proveedor del modelo LLM.</li>
+</ul>
+</section>
+<section id="requisitos-del-asistente-de-ia" class="slide level2">
+<h2>Requisitos del Asistente de IA</h2>
+<ul>
+<li>Instalar el plugin <strong>AI Assistant</strong> manualmente.</li>
+<li>Adquirir una licencia del <strong>Servicio de IA de JetBrains</strong>.</li>
+<li>Aceptar los <strong>Términos de Servicio</strong> y la <strong>Política de Uso Aceptable</strong>.</li>
+</ul>
+</section></section>
+<section>
+<section id="instalación-y-activación" class="title-slide slide level1">
+<h2>Instalación y Activación</h2>
+
+</section>
+<section id="instalación-del-plugin" class="slide level2">
+<h2>Instalación del Plugin</h2>
+<ul>
+<li>Haga clic en “<strong>Install AI Assistant</strong>” en la barra de herramientas derecha.</li>
+<li>Alternativamente, vaya a <strong>Settings | Plugins | Marketplace</strong> y busque “<strong>AI Assistant</strong>”.</li>
+<li><strong>Reinicie</strong> IntelliJ IDEA después de la instalación.</li>
+</ul>
+</section>
+<section id="activación-de-la-licencia" class="slide level2">
+<h2>Activación de la Licencia</h2>
+<ul>
+<li>Inicie sesión en su cuenta de <strong>JetBrains</strong>.</li>
+<li>Adquiera la licencia o active la <strong>prueba gratuita</strong>.</li>
+<li>Verifique el estado de su licencia en la ventana del Asistente de IA.</li>
+</ul>
+</section></section>
+<section>
+<section id="chat-con-ia" class="title-slide slide level1">
+<h2>Chat con IA</h2>
+
+</section>
+<section id="iniciar-un-nuevo-chat" class="slide level2">
+<h2>Iniciar un nuevo chat</h2>
+<ul>
+<li>Haz clic en <strong>AI Assistant</strong> en la barra de herramientas derecha.</li>
+<li>En el campo de entrada, escribe tu pregunta.</li>
+<li>Usa los comandos <code>/explain</code> y <code>/refactor</code> para ahorrar tiempo al escribir tu consulta.</li>
+<li>Usa el comando <code>/docs</code> para hacer preguntas relacionadas con IntelliJ IDEA.</li>
+</ul>
+</section>
+<section id="adjuntar-achivos-o-funciones" class="slide level2">
+<h2>Adjuntar achivos o funciones</h2>
+<ul>
+<li><strong>#thisFile</strong> hace referencia al archivo abierto.</li>
+<li><strong>#localChanges</strong> hace referencia a los cambios no comprometidos.</li>
+<li><strong>#file:</strong> abre un popup con los archivos del proyecto actual.</li>
+<li><strong>#symbol:</strong> agrega un símbolo a la consulta.</li>
+<li><strong>#schema:</strong> hace referencia a un esquema de base de datos.</li>
+</ul>
+</section>
+<section id="gestionar-el-modo-de-chat-inteligente" class="slide level2">
+<h2>Gestionar el modo de chat inteligente</h2>
+<ul>
+<li>El modo de chat inteligente está habilitado por defecto.</li>
+<li>Este modo permite al Asistente IA enviar detalles adicionales sobre el proyecto y el entorno.</li>
+<li>Para desactivarlo, desmarca la opción “<strong>Enable smart chat mode</strong>” en <strong>Settings | Tools | AI Assistant</strong></li>
+</ul>
+</section>
+<section id="conectar-el-chat-del-ai-assistant-a-tu-llm-local" class="slide level2">
+<h2>Conectar el chat del AI Assistant a tu LLM local</h2>
+<ul>
+<li>Puedes conectar tu LLM local disponible a través de Ollama.</li>
+<li>Abre la configuración, selecciona <strong>Tools | AI Assistant</strong> y habilita Ollama.</li>
+<li>Especifica la URL del host local y prueba la conexión.</li>
+<li>Al trabajar con el chat, selecciona tu modelo de LLM disponible.</li>
+</ul>
+</section></section>
+<section>
+<section id="uso-de-prompts-predefinidos" class="title-slide slide level1">
+<h2>Uso de prompts predefinidos</h2>
+
+</section>
+<section id="explicar-código-expresiones-regulares-sql" class="slide level2">
+<h2>Explicar código, Expresiones Regulares, SQL…</h2>
+<ul>
+<li>Selecciona un fragmento de código y haz clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, selecciona un fragmento de código y presiona <code>Alt+Enter</code>.</li>
+<li>Selecciona “<strong>AI Actions</strong>” y luego “<strong>Explain code</strong>”</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para ofrecerte una explicación.</li>
+</ul>
+</section>
+<section id="sugerir-refactorización" class="slide level2">
+<h2>Sugerir Refactorización</h2>
+<ul>
+<li>Selecciona un fragmento de código y haz clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, selecciona un fragmento de código y presiona <code>Alt+Enter</code></li>
+<li>Selecciona “<strong>AI Actions</strong>” y luego “<strong>Suggest Refactoring</strong>”.</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para ofrecerte sugerencias de refactorización.</li>
+</ul>
+</section>
+<section id="encontrar-problemas" class="slide level2">
+<h2>Encontrar Problemas</h2>
+<ul>
+<li>Selecciona un fragmento de código y haz clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, selecciona un fragmento de código y presiona <code>Alt+Enter</code></li>
+<li>Selecciona “<strong>AI Actions</strong>” y luego “<strong>Find Problems</strong>”</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para mostrar los problemas potenciales.</li>
+</ul>
+</section>
+<section id="explicar-un-error-en-tiempo-de-ejecución" class="slide level2">
+<h2>Explicar un Error en Tiempo de Ejecución</h2>
+<ul>
+<li>Haz clic en “<strong>Explain with AI</strong>” en la consola.</li>
+<li>La ventana de herramientas de <strong>AI Assistant</strong> se abrirá para ofrecerte una explicación del error y sugerir una solución.</li>
+</ul>
+</section></section>
+<section>
+<section id="indicaciones-personalizadas" class="title-slide slide level1">
+<h2>Indicaciones Personalizadas</h2>
+
+</section>
+<section id="agregar-indicaciones-a-la-biblioteca-de-indicaciones" class="slide level2">
+<h2>Agregar Indicaciones a la Biblioteca de Indicaciones</h2>
+<ul>
+<li>Haz clic derecho en cualquier parte del editor para abrir el menú contextual, luego ve a “<strong>AI Actions | Edit User Prompts</strong>”</li>
+<li>Alternativamente, presiona <code>Alt+Enter</code>, selecciona “<strong>AI Actions</strong>”, y haz clic en “<strong>Add your prompts</strong>”.</li>
+<li>Alternativamente, presiona <code>Ctrl+Alt+S</code> para abrir la configuración y luego selecciona “<strong>Tools | AI Assistant | Prompt Library</strong>”</li>
+<li>Haz clic en el botón <strong>+</strong>.</li>
+<li>Escribe tu prompt y edita el nombre.</li>
+</ul>
+</section>
+<section id="modificar-las-indicaciones-predefinidas" class="slide level2">
+<h2>Modificar las Indicaciones Predefinidas</h2>
+<ul>
+<li>Haz clic derecho en cualquier parte del editor para abrir el menú contextual, luego ve a “<strong>AI Actions | Edit User Prompts</strong>”</li>
+<li>Alternativamente, presiona <code>Alt+Enter</code>, selecciona “<strong>AI Actions</strong>”, y haz clic en “<strong>Add your prompts</strong>”.</li>
+<li>Alternativamente, presiona <code>Ctrl+Alt+S</code> para abrir la configuración y luego selecciona “<strong>Tools | AI Assistant | Prompt Library</strong>”</li>
+<li>Selecciona la acción para la que deseas modificar.</li>
+<li>Agrega nuevas instrucciones y haz clic en “<strong>Apply</strong>”</li>
+</ul>
+</section></section>
+<section>
+<section id="usar-ia-en-el-editor" class="title-slide slide level1">
+<h2>Usar IA en el editor</h2>
+
+</section>
+<section id="generar-código-en-el-editor-usando-prompts" class="slide level2">
+<h2>Generar código en el editor usando prompts</h2>
+<ul>
+<li>Selecciona una pieza de código que desees modificar o coloca el cursor en cualquier lugar del editor y presiona <code>Ctrl+\</code>.</li>
+<li>Alternativamente, haz clic derecho en el editor para abrir el menú contextual, selecciona “<strong>AI Actions</strong>” y luego “<strong>Generate Code</strong>” .</li>
+<li>Si seleccionas un fragmento de código y pides al <strong>AI Assistant</strong> que genere código, solo sugerirá cambios para ese fragmento de código seleccionado.</li>
+<li>Si colocas el cursor en cualquier lugar antes de pedir al <strong>AI Assistant</strong> que genere código, el código generado se insertará en el editor en la posición del cursor.</li>
+</ul>
+</section>
+<section id="escribir-indicaciones-para-la-ia" class="slide level2">
+<h2>Escribir indicaciones para la IA</h2>
+<ul>
+<li>En el campo de entrada, escribe tu prompt y presiona <code>Enter</code>.</li>
+<li>Espera a que se complete la generación. El código generado se mostrará en la misma pestaña del editor donde invocaste el campo de entrada.</li>
+<li>Si deseas mejorar el código generado, en el mismo campo de entrada, escribe un mensaje de seguimiento con los nuevos requisitos y presiona <code>Enter</code>.</li>
+<li>Haz clic en <strong>Accept</strong> para insertar el fragmento generado.</li>
+</ul>
+</section>
+<section id="revertir-y-descartar-cambios" class="slide level2">
+<h2>Revertir y descartar cambios</h2>
+<ul>
+<li>Para revertir algunos de los cambios sugeridos, haz clic en <strong>Revert</strong> en la barra lateral.</li>
+<li>Para descartar todos los cambios sugeridos, haz clic en <strong>Discard</strong> en la ventana emergente del campo de entrada.</li>
+</ul>
+</section>
+<section id="indicaciones-mientras-escribes" class="slide level2">
+<h2>Indicaciones mientras escribes</h2>
+<ul>
+<li>El <strong>AI Assistant</strong> también puede entender indicaciones mientras escribes directamente en el editor, sin necesidad de invocar el campo de entrada de generación de código.</li>
+<li>Escribe tu prompt directamente en el editor y presiona <code>Tab</code>. Para deshacer los cambios, presiona <code>Ctrl+Z</code>.</li>
+</ul>
+</section></section>
+<section>
+<section id="sugerencias-de-nombres" class="title-slide slide level1">
+<h2>Sugerencias de nombres</h2>
+
+</section>
+<section id="obtener-ayuda-con-sugerencias-de-nombres" class="slide level2">
+<h2>Obtener ayuda con sugerencias de nombres</h2>
+<ul>
+<li>Cuando renombres (<code>Shift+F6</code>) un símbolo, el <strong>AI Assistant</strong> sugiere opciones de nombre basadas en su contenido.</li>
+<li>Esta función está habilitada por defecto. Para activarla o desactivarla, revisa la configuración del <strong>AI Assistant</strong>.</li>
+</ul>
+</section>
+<section id="activar-sugerencias-de-nombres-generados-por-ia" class="slide level2">
+<h2>Activar sugerencias de nombres generados por IA</h2>
+<ul>
+<li>Presiona <code>Ctrl+Alt+S</code> para abrir la configuración y selecciona <strong>Tools | AI Assistant</strong>.</li>
+<li>Usa la casilla de verificación <strong>Provide AI-generated name suggestions</strong>.</li>
+</ul>
+</section></section>
+<section>
+<section id="autocompletado" class="title-slide slide level1">
+<h2>Autocompletado</h2>
+
+</section>
+<section id="invocar-autocompletado-con-ia" class="slide level2">
+<h2>Invocar autocompletado con IA</h2>
+<ul>
+<li>El autocompletado impulsado por el <strong>AI Assistant</strong> puede autocompletar líneas individuales, bloques de código e incluso funciones completas en tiempo real, basado en el contexto del proyecto.</li>
+</ul>
+</section>
+<section id="trabajar-con-autocompletado-en-el-editor" class="slide level2">
+<h2>Trabajar con autocompletado en el editor</h2>
+<ul>
+<li>Las sugerencias se muestran en el editor mientras escribes. También puedes activar el autocompletado presionando <code>Alt+Shift+\</code>.</li>
+<li>Para aplicar la sugerencia:
+<ul>
+<li>Presiona <code>Tab</code> para aceptar toda la sugerencia.</li>
+<li>Presiona <code>Ctrl+Right</code> para aceptar la sugerencia palabra por palabra.</li>
+<li>Presiona <code>End</code> para aceptar la sugerencia línea por línea.</li>
+</ul></li>
+<li>Para rechazar la sugerencia, presiona <code>Escape</code>.</li>
+</ul>
+</section>
+<section id="configurar-el-autocompletado" class="slide level2">
+<h2>Configurar el autocompletado</h2>
+<ul>
+<li>La opción de autocompletado está habilitada por defecto. Puedes configurar su funcionamiento en la configuración.</li>
+<li>Presiona <code>Ctrl+Alt+S</code> para abrir la configuración y selecciona <strong>Editor | General | Inline Completion</strong>.</li>
+</ul>
+</section></section>
+<section>
+<section id="corrección-de-errores" class="title-slide slide level1">
+<h2>Corrección de errores</h2>
+
+</section>
+<section id="corregir-errores-con-ia" class="slide level2">
+<h2>Corregir errores con IA</h2>
+<ul>
+<li>Cuando IntelliJ IDEA detecta código con errores previos a la compilación, sugiere una corrección rápida directamente en el editor.</li>
+<li>El <strong>AI Assistant</strong> puede sugerir correcciones más precisas debido a su conocimiento del contexto.</li>
+</ul>
+</section>
+<section id="aplicar-corrección-con-ia" class="slide level2">
+<h2>Aplicar corrección con IA</h2>
+<ul>
+<li>Coloca el cursor en un error destacado en el editor. Luego haz clic en el icono de la bombilla roja o presiona <code>Alt+Enter</code> para abrir la lista de sugerencias.</li>
+<li>Haz clic en <strong>Fix with AI</strong>.</li>
+<li>El <strong>AI Assistant</strong> enviará el archivo completo junto con los archivos relacionados al modelo de lenguaje para determinar la corrección más adecuada en este caso específico.</li>
+<li>El código se actualizará directamente en el editor.</li>
+</ul>
+</section></section>
+<section>
+<section id="integración-con-los-sistemas-de-control-de-versiones" class="title-slide slide level1">
+<h2>Integración con los Sistemas de Control de Versiones</h2>
+
+</section>
+<section id="generar-mensajes-de-commit" class="slide level2">
+<h2>Generar mensajes de commit</h2>
+<ul>
+<li>Presiona <code>Alt+0</code> para abrir la ventana de commits.</li>
+<li>Haz clic en “<strong>Generate Commit Message with AI Assistant</strong>”.</li>
+<li>Edita el mensaje si es necesario.</li>
+</ul>
+</section>
+<section id="personalizar-el-mensaje-de-commit" class="slide level2">
+<h2>Personalizar el mensaje de commit</h2>
+<ul>
+<li>Presiona <code>Ctrl+Alt+S</code> para abrir la configuración.</li>
+<li>Luuego selecciona <strong>Tools | AI Assistant | Prompt Library</strong>.</li>
+<li>Especifica reglas como el número de caracteres requeridos o el idioma.</li>
+<li>Haz clic en <strong>Apply</strong>.</li>
+</ul>
+</section>
+<section id="editar-y-mejorar-mensajes-de-commit" class="slide level2">
+<h2>Editar y mejorar mensajes de commit</h2>
+<ul>
+<li>Abre la ventana de control de versiones presionando <code>Alt+9</code>.</li>
+<li>Haz clic derecho sobre el commit y selecciona “<strong>Edit Commit Message</strong>”.</li>
+<li>Haz clic en “<strong>Improve Commit Message with AI Assistant</strong>”.</li>
+<li>Edita el mensaje y haz clic en OK para guardar.</li>
+</ul>
+</section>
+<section id="explicar-commits" class="slide level2">
+<h2>Explicar commits</h2>
+<ul>
+<li>Selecciona uno o varios commits, haz clic derecho y selecciona “<strong>Explain Commit with AI Assistant</strong>”.</li>
+<li><strong>AI Assistant</strong> proporcionará un resumen de los commits seleccionados.</li>
+</ul>
+</section>
+<section id="generar-título-y-descripción-para-pull-y-merge-requests" class="slide level2">
+<h2>Generar título y descripción para pull y merge requests</h2>
+<ul>
+<li>Al crear un pull request o merge request, haz clic en “<strong>Generate a Title and Description with AI Assistant</strong>” en el campo de descripción.</li>
+</ul>
+</section>
+<section id="resolver-conflictos-de-git-con-ai" class="slide level2">
+<h2>Resolver conflictos de Git con AI</h2>
+<ul>
+<li>En el diálogo “<strong>Merge Revisions</strong>”, haz clic en “<strong>Merge with AI</strong>”.</li>
+<li>Revisa el resultado y haz clic en <strong>Apply</strong>.</li>
+<li>Si es necesario, puedes revertir cambios haciendo clic en “<strong>Revert</strong>”.</li>
+</ul>
+</section></section>
+<section>
+<section id="generar-documentación" class="title-slide slide level1">
+<h2>Generar documentación</h2>
+
+</section>
+<section id="generar-documentación-i" class="slide level2">
+<h2>Generar documentación (I)</h2>
+<ul>
+<li>Utilizando el <strong>AI Assistant</strong>, puedes generar documentación usando un Gran Modelo de Lenguaje (LLM).</li>
+<li>Coloca el cursor en el fragmento de código deseado y haz clic derecho para abrir el menú contextual.</li>
+<li>Presiona <code>Alt+Enter</code>. Selecciona “<strong>AI actions</strong>” y luego “<strong>Write documentation.</strong>”.</li>
+<li>El <strong>AI Assistant</strong> generará la documentación para ti.</li>
+</ul>
+</section>
+<section id="generar-documentación-ii" class="slide level2">
+<h2>Generar documentación (II)</h2>
+<ul>
+<li>Alternativamente, en lugar de usar el menú contextual, escribe <code>/**</code>, presiona <strong>Enter</strong> y haz clic en “<strong>Generate with AI Assistant</strong>”.</li>
+<li>O ve a cualquier función o clase, inicia una nueva línea y escribe <code>"""</code>. Presiona <strong>Enter</strong> y haz clic en “<strong>Generate with AI Assistant</strong>”.</li>
+</ul>
+</section>
+<section id="personalización-del-prompt" class="slide level2">
+<h2>Personalización del prompt</h2>
+<ul>
+<li>Puedes personalizar el prompt para la acción de “<strong>Write Documentation</strong>” en <strong>Settings | Tools | AI Assistant | Prompt Library | Write Documentation.</strong>.</li>
+<li>Ajusta cómo se genera la documentación en función de tus necesidades específicas.</li>
+</ul>
+</section></section>
+<section>
+<section id="uso-de-la-ia-para-convertir-archivos-a-otro-lenguaje" class="title-slide slide level1">
+<h2>Uso de la IA para convertir archivos a otro lenguaje</h2>
+
+</section>
+<section id="conversión-completa-de-un-archivo-a-otro-lenguaje" class="slide level2">
+<h2>Conversión completa de un archivo a otro lenguaje</h2>
+<ul>
+<li>Abra el archivo que desea convertir, coloque el cursor en cualquier parte del editor y haga clic derecho para abrir el menú contextual.</li>
+<li>Alternativamente, presione <code>Alt+Enter</code>.</li>
+<li>Seleccione <strong>AI Actions</strong> y luego <strong>Convert File to Another Language</strong>.</li>
+<li>En la lista que se abre, elija el lenguaje al que desea convertir el archivo actual.</li>
+<li>Después de la conversión, el archivo convertido se guarda como un archivo separado con una nueva extensión.</li>
+</ul>
+</section>
+<section id="habilitar-la-conversión-de-código-a-otro-lenguaje-mediante-copiar-y-pegar" class="slide level2">
+<h2>Habilitar la conversión de código a otro lenguaje mediante copiar y pegar</h2>
+<ul>
+<li>Presione <code>Ctrl+Alt+S</code> para abrir la configuración y luego seleccione <strong>Tools | AI Assistant</strong>.</li>
+<li>Active la opción <strong>Suggest converting pasted code to the language of the target file</strong> y haga clic en <strong>Apply</strong>.</li>
+<li>Ahora puede copiar el fragmento de código que desea convertir y pegarlo en el archivo en el que está trabajando.</li>
+<li>El <strong>AI Assistant</strong> detecta el lenguaje del código pegado y sugiere convertirlo al lenguaje del archivo abierto.</li>
+<li>Si hace clic en <strong>Convert</strong>, el código se convertirá al lenguaje del archivo de destino. El código en el lenguaje original también se pegará, pero comentado.</li>
+</ul>
+</section></section>
+<section>
+<section id="generación-de-pruebas" class="title-slide slide level1">
+<h2>Generación de Pruebas</h2>
+
+</section>
+<section id="generar-pruebas-unitarias" class="slide level2">
+<h2>Generar Pruebas Unitarias</h2>
+<ul>
+<li>Ubica el cursor en la <strong>clase o método</strong> para el que deseas generar pruebas.</li>
+<li>Haz clic derecho o presiona <code>Alt+Enter</code> para abrir el menú contextual.</li>
+<li>Selecciona <strong>“AI Actions”</strong> y luego <strong>“Generate Unit Tests”</strong>.</li>
+</ul>
+</section>
+<section id="inspeccionar-y-mejorar" class="slide level2">
+<h2>Inspeccionar y Mejorar</h2>
+<ul>
+<li>El código generado se abrirá en una pestaña llamada <strong>“AI Diff”</strong>.</li>
+<li>Opciones disponibles:
+<ul>
+<li><strong>“Specify”</strong>: Añade nuevos requisitos y presiona <code>Enter</code>.</li>
+<li><strong>“Regenerate”</strong>: Genera nuevamente las pruebas.</li>
+<li><strong>“Customize Prompt”</strong>: Modifica el mensaje para mejorar el resultado.</li>
+</ul></li>
+</ul>
+</section>
+<section id="guardar-las-pruebas" class="slide level2">
+<h2>Guardar las Pruebas</h2>
+<ul>
+<li>Haz clic en <strong>“Accept all”</strong> para guardar el código generado.</li>
+<li>El archivo de prueba:
+<ul>
+<li>Se ubicará en el módulo de pruebas si existe.</li>
+<li>Caso contrario, se almacenará junto al archivo fuente.</li>
+</ul></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../lib/reveal.js//lib/js/head.min.js"></script>
+  <script src="../lib/reveal.js//js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        pdfMaxPagesPerSlide: 1,
+        history: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+        height: 720,
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.9,
+        maxScale: 1.1,
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+        menu: {
+            // Specifies which side of the presentation the menu will
+            // be shown. Use 'left' or 'right'.
+            side: 'left',
+
+            // Add slide numbers to the titles in the slide list.
+            // Use 'true' or format string (same as reveal.js slide numbers)
+            numbers: false,
+
+            // Specifies which slide elements will be used for generating
+            // the slide titles in the menu. The default selects the first
+            // heading element found in the slide, but you can specify any
+            // valid css selector and the text from the first matching
+            // element will be used.
+            // Note: that a section data-menu-title attribute or an element
+            // with a menu-title class will take precedence over this option
+            titleSelector: 'h1, h2, h3, h4, h5, h6',
+
+            // Hide slides from the menu that do not have a title.
+            // Set to 'true' to only list slides with titles.
+            hideMissingTitles: false,
+
+            // Add markers to the slide titles to indicate the
+            // progress through the presentation
+            markers: false,
+
+            // Specify custom panels to be included in the menu, by
+            // providing an array of objects with 'title', 'icon'
+            // properties, and either a 'src' or 'content' property.
+            custom: false,
+
+            // Specifies the themes that will be available in the themes
+            // menu panel. Set to 'false' to hide themes panel.
+            themes: [
+                { name: 'Black', theme: '../lib/reveal.js//css/theme/black.css' },
+                { name: 'White', theme: '../lib/reveal.js//css/theme/white.css' },
+                { name: 'League', theme: '../lib/reveal.js//css/theme/league.css' },
+                { name: 'Sky', theme: '../lib/reveal.js//css/theme/sky.css' },
+                { name: 'Beige', theme: '../lib/reveal.js//css/theme/beige.css' },
+                { name: 'Simple', theme: '../lib/reveal.js//css/theme/simple.css' },
+                { name: 'Serif', theme: '../lib/reveal.js//css/theme/serif.css' },
+                { name: 'Blood', theme: '../lib/reveal.js//css/theme/blood.css' },
+                { name: 'Night', theme: '../lib/reveal.js//css/theme/night.css' },
+                { name: 'Moon', theme: '../lib/reveal.js//css/theme/moon.css' },
+                { name: 'Solarized', theme: '../lib/reveal.js//css/theme/solarized.css' }
+            ],
+
+            // Specifies if the transitions menu panel will be shown.
+            transitions: true,
+
+            // Adds a menu button to the slides to open the menu panel.
+            // Set to 'false' to hide the button.
+            openButton: true,
+
+            // If 'true' allows the slide number in the presentation to
+            // open the menu panel. The reveal.js slideNumber option must
+            // be displayed for this to take effect
+            openSlideNumber: false,
+
+            // If true allows the user to open and navigate the menu using
+            // the keyboard. Standard keyboard interaction with reveal
+            // will be disabled while the menu is open.
+            keyboard: true
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },			// clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },			// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() },		// downlad recorded chalkboard drawing when 'd' is pressed
+          88: function() { RevealChalkboard.colorNext() },		// cycle colors forward when 'x' is pressed
+          89: function() { RevealChalkboard.colorPrev() },		// cycle colors backward when 'y' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../lib/reveal.js-title-footer//plugin/title-footer/title-footer.js', async: true, callback: function() { 
+              title_footer.initialize(null, 'rgba(0,0,0,0)');
+            } },
+          { src: '../lib/reveal.js-menu//menu.js', async: true },
+          { src: '../lib/reveal.js-plugins/chalkboard//chalkboard.js', async: true },
+          { src: '../lib/reveal.js//lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../lib/reveal.js//plugin/zoom-js/zoom.js', async: true },
+          { src: '../lib/reveal.js//plugin/math/math.js', async: true },
+          { src: '../lib/reveal.js//plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
