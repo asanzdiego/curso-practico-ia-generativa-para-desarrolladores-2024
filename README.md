@@ -24,7 +24,7 @@ Los alumnos entenderán los fundamentos de la Inteligencia Artificial Generativa
     1. Introducción a los LLM.
     2. Creación de prompts.
     3. Ejemplos prácticos de prompts.
-3. Ejemplos con plugins LLM en en entorno de programación ([[IntelliJ IDEA](https://raw.githubusercontent.com/asanzdiego/curso-practico-ia-generativa-para-desarrolladores-2024/main/slides/export/030-intellij-ai-assistant-slides.pdf) y [Eclipse](https://raw.githubusercontent.com/asanzdiego/curso-practico-ia-generativa-para-desarrolladores-2024/main/slides/export/040-copilot4eclipse-slides.pdf))
+3. Ejemplos con plugins LLM en en entorno de programación ([IntelliJ IDEA](https://raw.githubusercontent.com/asanzdiego/curso-practico-ia-generativa-para-desarrolladores-2024/main/slides/export/030-intellij-ai-assistant-slides.pdf) y [Eclipse](https://raw.githubusercontent.com/asanzdiego/curso-practico-ia-generativa-para-desarrolladores-2024/main/slides/export/040-copilot4eclipse-slides.pdf))
     1. Instalación y configuración.
     2. Generación de código.
     3. Sugerencias de Corrección de Errores.
@@ -32,4 +32,4 @@ Los alumnos entenderán los fundamentos de la Inteligencia Artificial Generativa
     5. Explicación de Código.
     6. Generación de Test Unitarios.
     7. Generación de Mensajes de Commits.
-4. [Cuestionario final](https://raw.githubusercontent.com/asanzdiego/curso-practico-ia-generativa-para-desarrolladores-2024/main/slides/export/curso-practico-ia-generativa-para-desarrolladores-2024-cuestionario.gift)
+4. [Cuestionario final](https://raw.githubusercontent.com/asanzdiego/curso-practico-ia-generativa-para-desarrolladores-2024/main/slides/export/curso-practico-ia-generativa-para-desarrolladores-2024-cuestionario.gift).
